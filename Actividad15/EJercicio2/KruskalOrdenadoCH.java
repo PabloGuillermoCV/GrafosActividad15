@@ -4,7 +4,8 @@ public class KruskalArcosOrdenados{
     
     private ArrayList<Pesado> arcos;
     private ArrayList<Integer> nodos;
-    ConjuntoDisjuntoHeuristica DS;
+    EDDisjointSetCH DS;
+
 
 
     public KruskalArcosOrdenados(Grafo grafo){
