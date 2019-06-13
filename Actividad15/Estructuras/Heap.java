@@ -1,5 +1,3 @@
-package Graphs;
-
 
 public class Heap<K,V> implements PriorityQueue<K, V> {
 	protected int size;
@@ -66,7 +64,7 @@ public class Heap<K,V> implements PriorityQueue<K, V> {
 				Entrada<K,V> aux = ArbolHeap[i]; //guardo el hijo
 				ArbolHeap[i] = ArbolHeap[i/2]; //mando al padre donde estaba el hijo
 				ArbolHeap[i/2] = aux; //mando el que inserte para arriba
-				i /= 2; //reduzco el contador, ya que ya hice el movimiento, me muevo hacia la raiz del arbol
+				i /= 2; //reduzco el contador, ya que ya hice el movimiento, me muevo hacia la ra�z del arbol
 			}
 			else{ //sino, el arbol ya esta ordenado, no es necesario seguir
 				seguir = false;
