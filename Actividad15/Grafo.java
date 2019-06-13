@@ -31,8 +31,26 @@ import java.util.ArrayList;
 	ti <- timestamp
 	kruskalHCH
 	tf <- timestamp
-	kru
+	kruskalHSH (G)
+	tf2 <- timestamp
 
+	Las conclusiones se hacen con conciencia en cuanto al analisis previo.
+
+	Martin escribio una tabla con 5 columnas:
+	La primera columna tiene un nodo n1 y un arco a1
+	La segunda columna tiene kruskalHCH y dice "tf - ti"
+	La tercera columna es de kruskalHSH con "tf2 - tf"
+	La cuarta columna es KruskalOCH con " t' - t'' "
+	La ultima columna es de KruskalOSH con " t''' - t'''' "
+
+	La tabla se hace para cada grafo.
+	Comentar los codigos para poder interpretar mas facil al corregir.
+	El archivo que subio es una dupla donde el primer elemento es un arco [ , ] y el segundo es el peso.
+
+	Generar un PDF con las 4 secciones y las tablas (generar 2 tablas significativas).
+	Las conclusiones es lo mas importante, demostrar que entendemos los conceptos. Es determinante para los puntos.
+	Poner un zip con las fuentes para las implementaciones.
+	Todo adentro de otro zip.
 */
 
 public class Grafo {
