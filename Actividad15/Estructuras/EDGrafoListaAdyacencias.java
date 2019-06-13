@@ -2,7 +2,7 @@
 
 public class EDGrafoListaAdyacencias{
     /* 
-        implementar Nodo y Arco
+       TODO: implementar Nodo y Arco
     */
 
     private class Arco{
