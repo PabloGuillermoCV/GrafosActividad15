@@ -14,7 +14,7 @@ public class KruskalHeapSH{
     public KruskalHeapSH(EDGrafoListaAdyacencias g) {
     	nodos = g.getNodos();
     	arcos = new Heap<ArcoED,Integer>(g.getArcos().size(), new Comparator<ArcoED>() );
-    	DS = new EDDisjointSetSH();
+    	DS = new EDDisjointSetSH(nodos.size());
     }
     
     public ArrayList<ArcoED> minimumSpanningTree() {

@@ -19,7 +19,7 @@ public class KruskalArcosOrdenados{
         arcos = grafo.getArcos();
         arcos = mergeSort (arcos);
         nodos = grafo.getNodos();
-        DS = new EDDisjointSetCH();
+        DS = new EDDisjointSetCH(nodos.size());
     }
     
     /**

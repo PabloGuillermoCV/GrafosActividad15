@@ -15,14 +15,13 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	public BreadthFirstSearch(EDGrafoListaAdyacencias g){
 		graph = g;
 		cola= new ColaConEnlaces<Nodo>();
-		hayDistancia= new boolean[g.getNodosCount()-1]; 
+		hayDistancia= new boolean[g.getNodos().size()-1]; 
 	}
 	
 	/**
 	 * Metodo principal que se encarga de recorrer el grafo segun el algoritmo BFS
-	 * @throws FullQueueException 
 	 */
-	public void doBFS() throws FullQueueException {
+	public void doBFS() {
 		// ojo no se si dejar el metodo publico
 		
 		for(Nodo v: graph.getNodos()) {
@@ -70,8 +69,8 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		while(!cola.isEmpty()) {
 			try {
 				u=cola.front();
-				for(ArcoED e: graph.incidentes(u)){ //ver metodos
-					Nodo z = graph.getOpuesto(u, e); //ver metodos
+				for(ArcoED e: graph.incidentes(u)){ 
+					Nodo z = graph.getOpuesto(u, e);
 					if( z.getColor().equals( "blanco")) {
 						hayDistancia[posicion]=true;
 						z.setColor("gris");
@@ -103,12 +102,7 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	
 	public boolean esConexo() throws FullQueueException{
 		
-		try{
-			doBFS();
-		}
-		catch(FullQueueException e) {
-			System.out.println("La cola esta llena y no puede incorporar nuevo elemento");
-		}
+		doBFS();
 		int i=0;
 		boolean esGrafoConexo=true;
 		while ( esGrafoConexo ){

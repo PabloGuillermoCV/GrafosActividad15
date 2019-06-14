@@ -1,4 +1,5 @@
 package Ejer1a;
+import cola.FullQueueException;
 import grafo.ArcoED;
 
 import grafo.EDGrafoListaAdyacencias;
@@ -20,7 +21,13 @@ public class ConexoBFS{
     public boolean checkConexo(){
         //TODO: chequear el tema de la parametrizacion
         BFS<Nodo,ArcoED> ejercicio = new BreadthFirstSearch<Nodo,ArcoED>(grafo);
-        boolean esGrafoConexo=ejercicio.esConexo();
+        boolean esGrafoConexo = false;
+		try {
+			esGrafoConexo = ejercicio.esConexo();
+		} catch (FullQueueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return esGrafoConexo;
     }
 

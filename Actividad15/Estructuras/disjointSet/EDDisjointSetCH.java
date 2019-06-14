@@ -12,14 +12,17 @@ public class EDDisjointSetCH{
     private Nodo[] cjtos;
     private int ultimaPos = 0;
 
+    public EDDisjointSetCH(int numeroNodos) {
+    	cjtos = new Nodo[numeroNodos];
+    }
+    
     /**
      * Se encarga de crear un cjto e insertarlo en la estructura
-     * @param n un entero que representará al elemento representante del cjto creado
+     * @param n un entero que representara al elemento representante del cjto creado
      */
 
     public void makeSet(Nodo n){
    
-        //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);
         ultimaPos++;
@@ -45,7 +48,7 @@ public class EDDisjointSetCH{
      * @param y nodo perteneciente a algun otro cjto
      */
     public void union(Nodo x, Nodo y){
-        Link(findSet(x), findSet(y)); //Ojo, estoy pasando los nodos, esto hay que revisar por el findSet
+        Link(findSet(x), findSet(y)); 
     }
 
     /**
@@ -59,17 +62,32 @@ public class EDDisjointSetCH{
         if(rankX > rankY) {
             y.setPadre(x);
             cjtos[y.getPosEnDS()] = null;
+            y.setPosEnDS(x.getPosEnDS());
+            ultimaPos--;
       
         }
         else{
             x.setPadre(y);
             cjtos[x.getPosEnDS()] = null;
+            x.setPosEnDS(y.getPosEnDS());
+            ultimaPos--;
             if(rankX == rankY)
                 y.setRango(rankY + 1);
         }
     }
 	
+    /**
+     * devuelve la cantidad de cjtos presentes en el Cjto-Disjunto
+     */
 	public int size(){
-		return cjtos.length;
+		//devolver Length estaba mal porque length me devuelve la longitud del arreglo
+		//NO cuantos cjtos hay efectivamente en la ED 
+		int i = 0;
+		//Busco cuantos elementos existen realmente en la ED
+		for(Nodo n : cjtos) {
+			if(n != null)
+				i++;
+		}
+		return i;
 	}
 }

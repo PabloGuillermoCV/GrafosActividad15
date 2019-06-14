@@ -15,7 +15,7 @@ public class KruskalHeapCH{
     public KruskalHeapCH(EDGrafoListaAdyacencias g) {
     	nodos = g.getNodos();
     	arcos = new Heap<ArcoED,Integer>(g.getArcos().size(), new Comparator<ArcoED>() );
-    	DS = new EDDisjointSetCH();
+    	DS = new EDDisjointSetCH(nodos.size());
     }
 	
 	/**

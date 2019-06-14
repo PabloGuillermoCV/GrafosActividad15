@@ -7,6 +7,10 @@ public class EDDisjointSetSH{
     private Nodo[] cjtos;
     private int ultimaPos = 0;
 
+    public EDDisjointSetSH(int numeroNodos) {
+    	cjtos = new Nodo[numeroNodos];
+    }
+    
     /**
      * Se encarga de crear un cjto e insertarlo en la estructura
      * @param n un entero que representarÃ¡ al elemento representante del cjto creado
