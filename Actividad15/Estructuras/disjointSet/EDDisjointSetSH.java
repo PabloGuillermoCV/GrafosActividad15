@@ -2,46 +2,7 @@ package disjointSet;
 
 
 public class EDDisjointSetSH{
-    private class NodoDS{
-        private int representante;
-        private NodoDS padre;
-        private int rango = 0;
 
-        /**
-         * Constructor de NodoDS
-         * @param r entero que serÃ¡ el representante del cjto
-         */
-        public NodoDS(int r){
-            representante = r;
-            padre = this;
-        }
-
-        //Setters y Gettters para los atributos del Nodo
-        public int getRepresentante(){
-            return representante;
-        }
-        public void setRepresentante(int r){
-            representante = r;
-        }
-        
-        public void setPadre(NodoDS p){
-            padre = p;
-        }
-
-        public NodoDS getPadre(){
-            return padre;
-        }
-
-        public void setRango(int n){
-            rango = n;
-        }
-
-        public int getRango(){
-            return rango;
-        }
-
-
-    }
     private NodoDS[] cjtos;
     private int ultimaPos = 0;
 
@@ -53,6 +14,8 @@ public class EDDisjointSetSH{
         NodoDS nodo = new NodoDS(n);
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo
         cjtos[ultimaPos] = nodo;
+        nodo.setPosEnDS(ultimaPos);
+        ultimaPos++;
     }
 
     /**
@@ -62,7 +25,7 @@ public class EDDisjointSetSH{
      */
     public NodoDS findSet(NodoDS n){
         NodoDS padreN = n.getPadre();
-        //SIN HEURÃ�STICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
+        //SIN HEURISTICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
         if(padreN != n)
            return padreN;
 
@@ -79,6 +42,7 @@ public class EDDisjointSetSH{
        NodoDS RepresentanteY = findSet(y);
        //SIN HEURISTICA! adoso el elemento y a x SIEMPRE
        RepresentanteY.setPadre(RepresentanteX);
+       cjtos[RepresentanteY.getPosEnDS()] = null;
        int dif = RepresentanteX.getRango() - RepresentanteY.getRango();
        if(dif < 0)
         RepresentanteX.setRango(RepresentanteX.getRango() + (-1*dif));

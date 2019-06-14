@@ -6,6 +6,7 @@ public class NodoDS {
 	 private int representante;
      private NodoDS padre;
      private int rango = 0;
+     private int posEnDS;
 
      
      /**
@@ -22,6 +23,15 @@ public class NodoDS {
      public int getRepresentante(){
          return representante;
      }
+     
+     public int getPosEnDS() {
+    	 return posEnDS;
+     }
+     
+     public void setPosEnDS(int pos) {
+    	 posEnDS = pos;
+     }
+     
      public void setRepresentante(int r){
          representante = r;
      }

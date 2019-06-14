@@ -15,10 +15,12 @@ public class EDDisjointSetCH{
      * Se encarga de crear un cjto e insertarlo en la estructura
      * @param n un entero que representará al elemento representante del cjto creado
      */
+    //TODO: ver si es necesario retornar el Nodo
     public NodoDS makeSet(int n){
         NodoDS nodo = new NodoDS(n);
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
         cjtos[ultimaPos] = nodo;
+        nodo.setPosEnDS(ultimaPos);
         ultimaPos++;
         return nodo;
     }
@@ -53,10 +55,14 @@ public class EDDisjointSetCH{
     private void Link(NodoDS x, NodoDS y){
         int rankX = x.getRango();
         int rankY = y.getRango();
-        if(rankX > rankY)
+        if(rankX > rankY) {
             y.setPadre(x);
+            cjtos[y.getPosEnDS()] = null;
+        	//TODO: ELiminar el conjunto que se adosa
+        }
         else{
             x.setPadre(y);
+            cjtos[x.getPosEnDS()] = null;
             if(rankX == rankY)
                 y.setRango(rankY + 1);
         }
