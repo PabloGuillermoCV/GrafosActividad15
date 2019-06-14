@@ -1,77 +1,36 @@
 package disjointSet;
 import java.util.ArrayList;
 
+import grafo.Nodo;
+
 public class EDDisjointSetCH{
     /*
         NOTA: Simular un arbol con un arreglo, como si estuvieramos usando un heap, sin ser un heap
     */
 
-    private class NodoDS{
-        private int representante;
-        private NodoDS padre;
-        private int rango = 0;
-
-        /**
-         * Constructor de NodoDS
-         * @param r entero que será el representante del cjto
-         */
-        public NodoDS(int r){
-            representante = r;
-            padre = this;
-        }
-
-        //Setters y Gettters para los atributos del Nodo
-        public int getRepresentante(){
-            return representante;
-        }
-        public void setRepresentante(int r){
-            representante = r;
-        }
-        
-        public void setPadre(NodoDS p){
-            padre = p;
-        }
-
-        public NodoDS getPadre(){
-            return padre;
-        }
-
-        public void setRango(int n){
-            rango = n;
-        }
-
-        public int getRango(){
-            return rango;
-        }
-
-
-    }
     private NodoDS[] cjtos;
     private int ultimaPos = 0;
-
-    public EDDisjointSetCH(){
-
-    }
 
     /**
      * Se encarga de crear un cjto e insertarlo en la estructura
      * @param n un entero que representará al elemento representante del cjto creado
      */
-    public void makeSet(int n){
-        NodoDS nodo = new NodoDS(n);
+    public NodoDS makeSet(int n, Nodo original){
+        NodoDS nodo = new NodoDS(n, original);
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
         cjtos[ultimaPos] = nodo;
         ultimaPos++;
+        return nodo;
     }
 
     /**
      * Se encarga de encontrar un cjto en la estructura
      * @param n un nodo pertenenciente a la estructura
-     * @return el nodo que es representante del conjunto buscado o NULL en caso de no encontrarlo
+     * @return el nodo que es representante del conjunto buscado 
      */
     public NodoDS findSet(NodoDS n){
         NodoDS padreN = n.getPadre();
-        //Realizo la compresión de caminos al asignar recursivamente padres a los cjtos
+        //Realizo la compresion de caminos al asignar recursivamente padres a los cjtos
         if(padreN != n)
             n.setPadre(findSet(padreN));
         return padreN;

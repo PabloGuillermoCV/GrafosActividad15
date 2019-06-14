@@ -16,7 +16,7 @@ public class KruskalArcosOrdenados{
 
 
     public KruskalArcosOrdenados(EDGrafoListaAdyacencias grafo){
-        //inicializar todo aquí
+        //inicializar todo aqui
         arcos = grafo.getArcos();
         nodos = grafo.getNodos();
     }
@@ -24,12 +24,16 @@ public class KruskalArcosOrdenados{
     public ArrayList<Integer> Kruskal(){
         ArrayList<Integer> T = new ArrayList<Integer>();
         do{
+        	//Cuidado, puede entrar en ciclo infinito, ver
             ArcoED uv = arcos.get(0);
+            
             /*compu = DS.find(uv.source());
             compv = DS.find(uv.target());
             if(compu != compv){
                 DS.union(uv.source(), uv.target())
                 T.add(uv)
+                arcos.remove(uv);
+                
             }
             */
 

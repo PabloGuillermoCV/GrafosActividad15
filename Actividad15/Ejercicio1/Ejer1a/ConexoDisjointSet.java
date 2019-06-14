@@ -1,5 +1,6 @@
 package Ejer1a;
 import disjointSet.EDDisjointSetCH;
+import disjointSet.NodoDS;
 import grafo.ArcoED;
 import grafo.EDGrafoListaAdyacencias;
 import grafo.Nodo;
@@ -15,7 +16,11 @@ public class ConexoDisjointSet{
     }
 
     public boolean checkConexo(){
-        
+        NodoDS[] nodos = new NodoDS[graph.getNodos().size()];
+        int i = 0;
+        for(Nodo n: graph.getNodos()) {
+        	nodos[i] = DS.makeSet(n.getRotulo(), n);
+        }
         for(ArcoED e: graph.getArcos()){
             Nodo v1 = e.getSource();
             Nodo v2 = e.getTarget();
