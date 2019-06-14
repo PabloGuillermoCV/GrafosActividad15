@@ -1,4 +1,4 @@
-package Ejercicio1a;
+package Ejer1a;
 
 public class Node<E> implements Position<E> {
 private E element;

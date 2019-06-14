@@ -9,12 +9,17 @@ public class ConexoDisjointSet{
         DS = new EDDisjointSetCH();
     }
 
-    public checkConexo(){
-        for(ArcoED e: g.getArcos()){
+    public boolean checkConexo(){
+        
+        for(ArcoED e: graph.getArcos()){
             Nodo v1 = e.getSource();
-            Nodo v2 = e.gettarget();
+            Nodo v2 = e.getTarget();
+            //TODO: Corregir esto para poder usar los nodos del grafo
             if(! (DS.findSet(v1).equals(DS.findSet(v2)) ));
+                DS.union();
         }
+        
+        return true;
     }
     
 }

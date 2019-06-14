@@ -1,4 +1,4 @@
-package Ejercicio1a;
+package Ejer1a;
 
 public class ColaConEnlaces<T> implements Queue<T>{
 	 protected Node<T> head;

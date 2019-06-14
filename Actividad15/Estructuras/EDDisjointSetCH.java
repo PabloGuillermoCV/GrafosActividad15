@@ -69,7 +69,7 @@ public class EDDisjointSetCH{
      * @return el nodo que es representante del conjunto buscado o NULL en caso de no encontrarlo
      */
     public NodoDS findSet(NodoDS n){
-        NodoDs padreN = n.getPadre();
+        NodoDS padreN = n.getPadre();
         //Realizo la compresión de caminos al asignar recursivamente padres a los cjtos
         if(padreN != n)
             n.setPadre(findSet(padreN));

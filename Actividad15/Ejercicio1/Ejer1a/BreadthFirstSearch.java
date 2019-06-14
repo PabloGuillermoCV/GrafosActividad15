@@ -1,4 +1,4 @@
-package Ejercicio1a;
+package Ejer1a;
 
 public class BreadthFirstSearch<V,E> implements BFS {
 	

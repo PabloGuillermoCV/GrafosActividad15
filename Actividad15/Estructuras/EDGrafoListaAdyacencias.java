@@ -1,6 +1,9 @@
 
 import java.util.ArrayList;
 
+import Grafo.Pesado;
+
+
 public class EDGrafoListaAdyacencias{
   
     private ArrayList<ArcoED> arcos;
@@ -8,7 +11,7 @@ public class EDGrafoListaAdyacencias{
 
     public EDGrafoListaAdyacencias(Grafo g){
         arcos = new ArrayList<ArcoED>();
-        nodos = new ArraList<Nodo>();
+        nodos = new ArrayList<Nodo>();
         int[] nodosEntrada = g.getNodos();
         ArrayList<Pesado> arcosEntrada = g.getArcos();
 
@@ -40,7 +43,7 @@ public class EDGrafoListaAdyacencias{
     }
 
     public Nodo getOpuesto(Nodo n, ArcoED a){
-        if(e.getTarget().equals(n)){
+        if(a.getTarget().equals(n)){
             return a.getSource();
         }
         else{

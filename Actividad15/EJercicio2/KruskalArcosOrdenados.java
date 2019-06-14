@@ -2,14 +2,16 @@ import java.util.ArrayList;
 
 public class KruskalArcosOrdenados{
     
-    private ArrayList<Pesado> arcos;
-    private ArrayList<Integer> nodos;
+    private ArrayList<ArcoED> arcos;
+    private ArrayList<Nodo> nodos;
     EDDisjointSetCH DS;
 
 
 
-    public KruskalArcosOrdenados(Grafo grafo){
+    public KruskalArcosOrdenados(EDGrafoListaAdyacencias grafo){
         //inicializar todo aquí
+        arcos = grafo.getArcos();
+        nodos = grafo.getNodos();
     }
 
     public ArrayList<Pesado> Kruskal(){

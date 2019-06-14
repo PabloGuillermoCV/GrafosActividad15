@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.Date;
 
 	public class AnalisisEmpirico{
 		
@@ -21,7 +22,7 @@ import com.google.gson.GsonBuilder;
 			 * Generar varios grafos de diferente configuración y buscar 
 			 * árbol de cubrimiento minimal para cada uno. 
 			 * 
-			 * Medir el rendimiento usando timestamps.
+			 * Medir el rendimiento usando timestamps. (es una clase en java.util.Date)
 			 * 
 			 */
 			

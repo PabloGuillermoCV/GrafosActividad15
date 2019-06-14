@@ -1,3 +1,5 @@
+import ColasConPrioridad.Comparator;
+import ColasConPrioridad.PriorityQueue;
 
 public class Heap<K,V> implements PriorityQueue<K, V> {
 	protected int size;

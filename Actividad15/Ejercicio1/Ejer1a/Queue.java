@@ -1,4 +1,4 @@
-package Ejercicio1a;
+package Ejer1a;
 
 public interface Queue<T> {
 	 public void enqueue(T e) throws FullQueueException;

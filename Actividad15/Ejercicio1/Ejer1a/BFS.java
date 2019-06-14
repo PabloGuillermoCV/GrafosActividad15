@@ -1,4 +1,4 @@
-package Ejercicio1a;
+package Ejer1a;
 
 public interface BFS<V,E> {
 	

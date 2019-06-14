@@ -8,7 +8,7 @@ public class EDDisjointSetSH{
 
         /**
          * Constructor de NodoDS
-         * @param r entero que será el representante del cjto
+         * @param r entero que serÃ¡ el representante del cjto
          */
         public NodoDS(int r){
             representante = r;
@@ -46,7 +46,7 @@ public class EDDisjointSetSH{
 
     /**
      * Se encarga de crear un cjto e insertarlo en la estructura
-     * @param n un entero que representará al elemento representante del cjto creado
+     * @param n un entero que representarÃ¡ al elemento representante del cjto creado
      */
     public void makeSet(int n){
         NodoDS nodo = new NodoDS(n);
@@ -60,8 +60,8 @@ public class EDDisjointSetSH{
      * @return el nodo que es representante del conjunto buscado o NULL en caso de no encontrarlo
      */
     public NodoDS findSet(NodoDS n){
-        NodoDs padreN = n.getPadre();
-        //SIN HEURÍSTICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
+        NodoDS padreN = n.getPadre();
+        //SIN HEURÃ�STICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
         if(padreN != n)
            return padreN;
 
@@ -76,7 +76,7 @@ public class EDDisjointSetSH{
     public void union(NodoDS x, NodoDS y){
        NodoDS RepresentanteX = findSet(x);
        NodoDS RepresentanteY = findSet(y);
-       //SIN HEURÍSTICA! adoso el elemento y a x SIEMPRE
+       //SIN HEURISTICA! adoso el elemento y a x SIEMPRE
        RepresentanteY.setPadre(RepresentanteX);
        int dif = RepresentanteX.getRango() - RepresentanteY.getRango();
        if(dif < 0)

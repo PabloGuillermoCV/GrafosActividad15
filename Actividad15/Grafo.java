@@ -57,7 +57,7 @@ public class Grafo {
 	private int[] nodos;
 	private ArrayList<Pesado> arcos;
 
-	private class Pesado {
+	public class Pesado {
 		private Arco arco;
 		private int peso;
 		
