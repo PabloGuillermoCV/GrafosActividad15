@@ -2,105 +2,32 @@
 import java.util.ArrayList;
 
 public class EDGrafoListaAdyacencias{
-    /* 
-       TODO: implementar Nodo y Arco
-    */
-    private ArrayList<Arco> arcos;
+  
+    private ArrayList<ArcoED> arcos;
     private ArrayList<Nodo> nodos;
 
-    private class Arco{
-        private Nodo source;
-        private Nodo target;
-        private int peso;
-        private String color;
-        private int posArcos,posArcoSucesor,posArcoPredecesor;
-        
-        public Arco(int p, Nodo s, Nodo t){
-            peso = p;
-            source = s;
-            target = t;
-        }
-
-        public int getPeso(){
-            return peso;
-        }
-
-        public Nodo getSource(){
-            return source;
-        }
-
-        public Nodo getTarget(){
-            return target;
-        }
-
-        public String getColor(){
-            return color;
-        }
-
-        public int getPosArcos(){
-            return posArcos;
-        }
-        
-        public int getPosArcoSucesor(){
-            return posArcoSucesor;
-        }
-
-        public int getPosArcoPredecesor(){
-            return posArcoPredecesor;
-        }
-
-        public void setColor(String color){
-            this.color = color;
-        }
-
-        public void setPosArcos(int pos){
-            posArcos = pos;
-        }
-
-        public void setPosArcoSucesor(int pos){
-            posArcoSucesor = pos;
-        }
-
-        public void setPosArcoPredecesor(int pos){
-            posArcoPredecesor = pos;
-        }
-
-    }
-
-    private class Nodo{
-        private int rotulo;
-        private ArrayList<Arco> adyacentes;
-        private int posEnListaNodos;
-
-        public Nodo(int r){
-            rotulo = r;
-            adyacentes = new ArrayList<Arco>();
-        }
-
-        public int getRotulo(){
-            return rotulo;
-        }
-
-        public int getPosEnNodos(){
-            return posEnListaNodos;
-        }
-
-        public ArrayList<Arco> getAdyacentes(){
-            return adyacentes;
-        }
-
-        public void setPosEnNodos(int pos){
-            posEnListaNodos = pos;
-        }
-    }
-
     public EDGrafoListaAdyacencias(Grafo g){
-        arcos = new ArrayList<Arco>();
+        arcos = new ArrayList<ArcoED>();
         nodos = new ArraList<Nodo>();
-        //TODO: hacer la traducción aquí!
+        int[] nodosEntrada = g.getNodos();
+        ArrayList<Pesado> arcosEntrada = g.getArcos();
+
+        
+        //Para cada nodo en el grafo pasado como entrada, lo paso a mi arreglo de nodos, insertandolo en el grafo
+        for(int i = 0; i < g.getNodosCount(); i++){
+            this.insertarVertice(nodosEntrada[i]);
+        }
+        //para cada Arco del grafo pasado como entrada, lo paso a mi arraylist de arcos, insertandolo en el grafo, cuidando la correspondencia
+        //con los nodos inicio y fin
+        for(Pesado p : arcosEntrada){
+            Nodo n1 = nodos.get(nodos.indexOf(p.getArco().getSource())); 
+            Nodo n2 = nodos.get(nodos.indexOf(p.getArco().getTarget()));
+            int peso = p.getPeso();
+            this.insertarArco(n1, n2, peso);
+        }
     }
 
-    public ArrayList<Arco> getArcos(){
+    public ArrayList<ArcoED> getArcos(){
         return arcos;
     }
 
@@ -108,8 +35,52 @@ public class EDGrafoListaAdyacencias{
         return nodos;
     }
 
-    public ArrayList<Arco> incidentes(Nodo n){
+    public ArrayList<ArcoED> incidentes(Nodo n){
         return n.getAdyacentes();
+    }
+
+    public Nodo getOpuesto(Nodo n, ArcoED a){
+        if(e.getTarget().equals(n)){
+            return a.getSource();
+        }
+        else{
+            return a.getTarget();
+        }
+    }
+
+    public Nodo[] endVertices(ArcoED a){
+        Nodo[] nodos = new Nodo[2];
+        nodos[0] = a.getSource();
+        nodos[1] = a.getTarget();
+        return nodos;
+    }
+
+    public boolean sonAdyacentes(Nodo a, Nodo b){
+        boolean is = false;
+        ArrayList<ArcoED> arcos = a.getAdyacentes();
+        for(ArcoED e: arcos){
+            if(e.getSource() == b || e.getTarget() == b){
+                is = true;
+                break;
+            }
+        }
+        return is;
+    }
+
+    public void insertarVertice(int rot){
+        Nodo n = new Nodo(rot);
+        nodos.add(n);
+        n.setPosEnNodos(nodos.indexOf(n));
+    }
+
+    public void insertarArco(Nodo s, Nodo t, int peso){
+        ArcoED a = new ArcoED(peso,s,t);
+        arcos.add(a);
+        s.getAdyacentes().add(a);
+        t.getAdyacentes().add(a);
+        a.setPosArcos(arcos.indexOf(a));
+        a.setPosArcoPredecesor(s.getAdyacentes().indexOf(a));
+        a.setPosArcoSucesor(t.getAdyacentes().indexOf(a));
     }
 
 }

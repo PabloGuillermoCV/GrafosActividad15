@@ -67,6 +67,14 @@ public class Grafo {
 			this.peso = peso;
 		}
 
+		public Arco getArco(){
+			return arco;
+		}
+
+		public int getPeso(){
+			return peso;
+		}
+
 		private class Arco {
 			private int nodo1;
 			private int nodo2;
@@ -75,6 +83,14 @@ public class Grafo {
 				// TODO Auto-generated constructor stub
 				this.nodo1 = i;
 				this.nodo2 = j;
+			}
+
+			public int getNodoSource(){
+				return nodo1;
+			}
+
+			public int getNodoTarget(){
+				return nodo2;
 			}
 		}
 	}
@@ -103,6 +119,14 @@ public class Grafo {
 			Pesado pesado = new Pesado(arcoLista, ((Double) arcosJson[i][1]).intValue());
 			this.arcos.add(pesado); 
 		}
+	}
+
+	public int[] getNodos(){
+		return nodos;
+	}
+
+	public ArrayList<Pesado> getArcos(){
+		return arcos;
 	}
 	
 	public static class GrafoObj {

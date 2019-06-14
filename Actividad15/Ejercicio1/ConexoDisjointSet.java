@@ -10,8 +10,10 @@ public class ConexoDisjointSet{
     }
 
     public checkConexo(){
-        for(Edge<E> e: g.getArcos()){
-            Vertex<V> v1 = e.
+        for(ArcoED e: g.getArcos()){
+            Nodo v1 = e.getSource();
+            Nodo v2 = e.gettarget();
+            if(! (DS.findSet(v1).equals(DS.findSet(v2)) ));
         }
     }
     

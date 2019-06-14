@@ -2,22 +2,22 @@ package Ejercicio1a;
 
 public class BreadthFirstSearch<V,E> implements BFS {
 	
-	protected Graph<V,E> graph;
+	protected EDGrafoListaAdyacencias graph;
 	protected Queue<V> cola;
 	
-	public BreadthFirstSearch(Graph<V,E> g){
+	public BreadthFirstSearch(EDGrafoListaAdyacencias g){
 		graph = g;
-		cola=new ColaConEnlaces();
+		cola=new ColaConEnlaces<Nodo>();
 	}
 	
 	public void doBFS() {
 		
-		for(Vertex<V> v: graph.vertices()) {
+		for(Nodo v: graph.getNodos()) {
 			v.setColor("blanco");
 		}
 		
 		
-		for(Vertex<V> v: graph.vertices()) {
+		for(Nodo v: graph.getNodos()) {
 			
 			if (v.getColor() == "blanco") {
 				v.setColor("gris");
@@ -29,12 +29,12 @@ public class BreadthFirstSearch<V,E> implements BFS {
 	}
 	
 	private void visitarBFS() {
-		Vertex<V> u; //Habria que inicializarlo en null? por si nunca entra al while?
+		Nodo u; //Habria que inicializarlo en null? por si nunca entra al while?
 		while(!cola.isEmpty()) {
 			u=cola.front();
-			for(Edge<E> e: graph.incidentEdges(u)){ //ver metodos
-				Vertex<V> z = graph.opposite(u, e); //ver metodos
-				if( z.getColor == "blanco") {
+			for(ArcoED e: graph.getAdyacentes(u)){ //ver metodos
+				Nodo z = graph.getOpuesto(u, e); //ver metodos
+				if( z.getColor().equals( "blanco")) {
 					z.setColor("gris");
 					cola.enqueue(z);
 				}

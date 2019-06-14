@@ -60,6 +60,7 @@ public class EDDisjointSetCH{
         NodoDS nodo = new NodoDS(n);
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
         cjtos[ultimaPos] = nodo;
+        ultimaPos++;
     }
 
     /**

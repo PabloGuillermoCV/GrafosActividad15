@@ -2,15 +2,15 @@
 
 public class ConexoBFS{
     
-    private EDGrafoListaAdyacencias<V,E> grafo;
+    private EDGrafoListaAdyacencias grafo;
 
-    public ConexoBFS(EDGrafoListaAdyacencias<V,E> g){
+    public ConexoBFS(EDGrafoListaAdyacencias g){
         grafo = g;
     }
 
     public int checkConexo(){
         //TODO: chequear el tema de la parametrizacion
-        BFS ejercicio = new BreadthFirstSearch<nodo,Arco>(grafo);
+        BFS ejercicio = new BreadthFirstSearch<Nodo,ArcoED>(grafo);
         ejercicio.doBFS();
     }
 

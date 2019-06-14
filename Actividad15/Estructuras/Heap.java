@@ -108,7 +108,7 @@ public class Heap<K,V> implements PriorityQueue<K, V> {
 					 		else m = HD; 
 					} 
 					else m = HI; //sino, el minimo es el Hijo Izquierdo
-					if(comp.compare(ArbolHeap[i].getKey(), ArbolHeap[m].getKey()) > 0){ //si el m�nimo de los hijos es mas grande que el padre
+					if(comp.compare(ArbolHeap[i].getKey(), ArbolHeap[m].getKey()) > 0){ //si el minimo de los hijos es mas grande que el padre
 						Entrada<K,V> aux = ArbolHeap[i]; //Guardo el elemento que estoy moviendo
 						ArbolHeap[i] = ArbolHeap[m]; //intercambio de lugar el minimo de los hijos y el elemento que estoy moviendo
 						ArbolHeap[m] = aux;
