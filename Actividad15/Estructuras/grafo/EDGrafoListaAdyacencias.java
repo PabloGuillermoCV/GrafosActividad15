@@ -25,6 +25,7 @@ public class EDGrafoListaAdyacencias{
         //para cada Arco del grafo pasado como entrada, lo paso a mi arraylist de arcos, insertandolo en el grafo, cuidando la correspondencia
         //con los nodos inicio y fin
         for(Pesado p : arcosEntrada){
+        	//Problema acá con indexOf
             Nodo n1 = nodos.get(nodos.indexOf(p.getArco().getNodoSource())); 
             Nodo n2 = nodos.get(nodos.indexOf(p.getArco().getNodoTarget()));
             int peso = p.getPeso();

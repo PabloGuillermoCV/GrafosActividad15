@@ -98,7 +98,7 @@ import java.sql.Timestamp;
 				
 				//para cada grafo Comun creado, ejecuto el problema 1 según las 2 variantes y tomo los tiempos 
 				for(int i = 0; i < grafosComunes.length; i++) {
-					
+					System.out.println("Estoy en el for de grafos comunes");
 					//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con BFS
 					EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosComunes[i]);
 					Date date = new Date();
@@ -125,7 +125,7 @@ import java.sql.Timestamp;
 				
 				//para cada grafo Conexo creado, ejecuto el problema 2 según las 4 variantes y tomo los tiempos
 				for(int i = 0; i < grafosConexos.length; i++) {
-					
+					System.out.println("Estoy en el for de grafos conexos");
 					//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set CON Heuristicas
 					EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosConexos[i]);
 					Date date = new Date();
