@@ -1,3 +1,4 @@
+package heap;
 
 public class InvalidEntryException extends Exception {
  public InvalidEntryException(String err){

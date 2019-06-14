@@ -1,7 +1,9 @@
+package grafo;
 
 import java.util.ArrayList;
+import grafoJSON.Grafo;
+import grafoJSON.Pesado;
 
-import Grafo.Pesado;
 
 
 public class EDGrafoListaAdyacencias{
@@ -23,8 +25,8 @@ public class EDGrafoListaAdyacencias{
         //para cada Arco del grafo pasado como entrada, lo paso a mi arraylist de arcos, insertandolo en el grafo, cuidando la correspondencia
         //con los nodos inicio y fin
         for(Pesado p : arcosEntrada){
-            Nodo n1 = nodos.get(nodos.indexOf(p.getArco().getSource())); 
-            Nodo n2 = nodos.get(nodos.indexOf(p.getArco().getTarget()));
+            Nodo n1 = nodos.get(nodos.indexOf(p.getArco().getNodoSource())); 
+            Nodo n2 = nodos.get(nodos.indexOf(p.getArco().getNodoTarget()));
             int peso = p.getPeso();
             this.insertarArco(n1, n2, peso);
         }

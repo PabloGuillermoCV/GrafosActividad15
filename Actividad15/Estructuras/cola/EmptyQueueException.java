@@ -1,4 +1,4 @@
-package Ejer1a;
+package cola;
 
 public class EmptyQueueException extends Exception {
 	 public EmptyQueueException(String arr){

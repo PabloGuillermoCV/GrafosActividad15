@@ -1,4 +1,8 @@
+package Ejer1a;
+import grafo.ArcoED;
 
+import grafo.EDGrafoListaAdyacencias;
+import grafo.Nodo;
 
 public class ConexoBFS{
     
@@ -8,10 +12,11 @@ public class ConexoBFS{
         grafo = g;
     }
 
-    public int checkConexo(){
+    public boolean checkConexo(){
         //TODO: chequear el tema de la parametrizacion
-        BFS ejercicio = new BreadthFirstSearch<Nodo,ArcoED>(grafo);
+        BFS<Nodo,ArcoED> ejercicio = new BreadthFirstSearch<Nodo,ArcoED>(grafo);
         ejercicio.doBFS();
+        return true;
     }
 
 }

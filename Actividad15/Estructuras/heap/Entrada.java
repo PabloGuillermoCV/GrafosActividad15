@@ -1,5 +1,6 @@
+package heap;
 
-public class Entrada<K,V> implements Graphs.Entry<K,V> {
+public class Entrada<K,V> implements Entry<K,V> {
 	  protected K Key; //Usado por el comparador
 	  protected V Value; //Cosa que guardo, "Etiqueta"
 	  public Entrada(K k, V v){

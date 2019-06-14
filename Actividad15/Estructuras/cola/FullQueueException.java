@@ -1,4 +1,4 @@
-package Ejer1a;
+package cola;
 
 public class FullQueueException extends Exception {
 	 public FullQueueException (String arr){

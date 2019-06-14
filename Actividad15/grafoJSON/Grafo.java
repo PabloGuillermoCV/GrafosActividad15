@@ -1,3 +1,4 @@
+package grafoJSON;
 import java.util.ArrayList;
 
 /* 
@@ -7,17 +8,17 @@ import java.util.ArrayList;
 		(se podria cortar antes al encontrar un No conexo)
 	Punto 2:
 		Lista Ordenada
-			-DS con Heurísticas
-			-DS sin Heurísticas
+			-DS con Heuristicas
+			-DS sin Heuristicas
 		Heap
-			-DS con heurísticas
-			-DS sin Heurísticas
+			-DS con heuristicas
+			-DS sin Heuristicas
 	
-	la Estructura Grafo la tenemos que armar nosotros, el grafo dado acá no es eficiente
-	el modelo es una construcción matematica
+	la Estructura Grafo la tenemos que armar nosotros, el grafo dado aca no es eficiente
+	el modelo es una construccion matematica
 	n es una lista de nodos
 	a es una lista de arcos, donde cada arco tiene un inicio, un fin y un peso
-	podemos dejar este modelo y traducir lo que da el modelo a nuestra implementación más eficiente!!!
+	podemos dejar este modelo y traducir lo que da el modelo a nuestra implementacian mas eficiente!!!
 
 	el problema del análisis del tiempo empiezan una vez creada la estructura
 
@@ -57,43 +58,7 @@ public class Grafo {
 	private int[] nodos;
 	private ArrayList<Pesado> arcos;
 
-	public class Pesado {
-		private Arco arco;
-		private int peso;
-		
-		private Pesado(ArrayList<Integer> arcoLista, int peso) {
-			// TODO Auto-generated constructor stub
-			this.arco = new Arco(arcoLista.get(0), arcoLista.get(1));
-			this.peso = peso;
-		}
 
-		public Arco getArco(){
-			return arco;
-		}
-
-		public int getPeso(){
-			return peso;
-		}
-
-		private class Arco {
-			private int nodo1;
-			private int nodo2;
-			
-			public Arco(int i, int j) {
-				// TODO Auto-generated constructor stub
-				this.nodo1 = i;
-				this.nodo2 = j;
-			}
-
-			public int getNodoSource(){
-				return nodo1;
-			}
-
-			public int getNodoTarget(){
-				return nodo2;
-			}
-		}
-	}
 	
 	public int getNodosCount(){
 		return this.nodos.length;

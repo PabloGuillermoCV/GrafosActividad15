@@ -1,4 +1,4 @@
-package Ejer1a;
+package cola;
 
 public class Node<E> implements Position<E> {
 private E element;

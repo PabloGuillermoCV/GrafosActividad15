@@ -1,4 +1,4 @@
-package Ejer1a;
+package cola;
 
 public interface Queue<T> {
 	 public void enqueue(T e) throws FullQueueException;

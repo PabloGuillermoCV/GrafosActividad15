@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Ejercicio1/|Estructuras/|EJercicio2/" kind="src" path="Actividad15"/>
+	<classpathentry kind="src" path="Actividad15/Ejercicio1"/>
+	<classpathentry kind="src" path="Actividad15/EJercicio2"/>
+	<classpathentry kind="src" path="Actividad15/Estructuras"/>
+	<classpathentry kind="src" path="Estructuras de Datos/src"/>
+	<classpathentry kind="lib" path="D:/Descargas/gson-2.8.5.jar"/>
+	<classpathentry kind="output" path="Estructuras de Datos/bin"/>
+</classpath>

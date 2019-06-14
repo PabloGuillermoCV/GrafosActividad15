@@ -1,3 +1,4 @@
+package heap;
 
 
 public class EmptyPriorityQueueException extends Exception {

@@ -1,4 +1,4 @@
-package Ejer1a;
+package cola;
 
 public class ColaConEnlaces<T> implements Queue<T>{
 	 protected Node<T> head;

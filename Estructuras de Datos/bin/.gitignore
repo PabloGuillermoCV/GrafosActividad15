@@ -54,3 +54,11 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+/disjointSet/
+/heap/
+/grafo/
+/cola/
+/grafoJSON/
+/KruskalLista/
+/kruskalHeap/
+/kruskalLista/

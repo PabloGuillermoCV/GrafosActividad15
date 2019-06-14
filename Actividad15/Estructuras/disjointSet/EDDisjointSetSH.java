@@ -1,10 +1,7 @@
-import java.util.ArrayList;
+package disjointSet;
 
-public class EDDisjointSetCH{
-    /*
-        NOTA: Simular un arbol con un arreglo, como si estuvieramos usando un heap, sin ser un heap
-    */
 
+public class EDDisjointSetSH{
     private class NodoDS{
         private int representante;
         private NodoDS padre;
@@ -12,7 +9,7 @@ public class EDDisjointSetCH{
 
         /**
          * Constructor de NodoDS
-         * @param r entero que será el representante del cjto
+         * @param r entero que serÃ¡ el representante del cjto
          */
         public NodoDS(int r){
             representante = r;
@@ -48,19 +45,14 @@ public class EDDisjointSetCH{
     private NodoDS[] cjtos;
     private int ultimaPos = 0;
 
-    public EDDisjointSetCH(){
-
-    }
-
     /**
      * Se encarga de crear un cjto e insertarlo en la estructura
-     * @param n un entero que representará al elemento representante del cjto creado
+     * @param n un entero que representarÃ¡ al elemento representante del cjto creado
      */
     public void makeSet(int n){
         NodoDS nodo = new NodoDS(n);
-        //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
+        //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo
         cjtos[ultimaPos] = nodo;
-        ultimaPos++;
     }
 
     /**
@@ -70,10 +62,11 @@ public class EDDisjointSetCH{
      */
     public NodoDS findSet(NodoDS n){
         NodoDS padreN = n.getPadre();
-        //Realizo la compresión de caminos al asignar recursivamente padres a los cjtos
+        //SIN HEURÃ�STICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
         if(padreN != n)
-            n.setPadre(findSet(padreN));
-        return padreN;
+           return padreN;
+
+        return n;
     }
 
     /**
@@ -82,23 +75,15 @@ public class EDDisjointSetCH{
      * @param y nodo perteneciente a algun otro cjto
      */
     public void union(NodoDS x, NodoDS y){
-        Link(findSet(x), findSet(y)); //Ojo, estoy pasando los nodos, esto hay que revisar por el findSet
+       NodoDS RepresentanteX = findSet(x);
+       NodoDS RepresentanteY = findSet(y);
+       //SIN HEURISTICA! adoso el elemento y a x SIEMPRE
+       RepresentanteY.setPadre(RepresentanteX);
+       int dif = RepresentanteX.getRango() - RepresentanteY.getRango();
+       if(dif < 0)
+        RepresentanteX.setRango(RepresentanteX.getRango() + (-1*dif));
+       else
+        RepresentanteX.setRango(RepresentanteX.getRango() + dif);
     }
 
-    /**
-     * Se encarga de unir los conjuntos, aplicando la heuristica de Union por rango
-     * @param x representante del primer cjto
-     * @param y representante del segundo cjto
-     */
-    private void Link(NodoDS x, NodoDS y){
-        int rankX = x.getRango();
-        int rankY = y.getRango();
-        if(rankX > rankY)
-            y.setPadre(x);
-        else{
-            x.setPadre(y);
-            if(rankX == rankY)
-                y.setRango(rankY + 1);
-        }
-    }
 }

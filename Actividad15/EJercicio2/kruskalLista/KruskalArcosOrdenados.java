@@ -1,4 +1,11 @@
+package kruskalLista;
 import java.util.ArrayList;
+
+import disjointSet.EDDisjointSetCH;
+import grafo.ArcoED;
+import grafo.EDGrafoListaAdyacencias;
+import grafo.Nodo;
+import grafoJSON.Pesado;
 
 public class KruskalArcosOrdenados{
     
@@ -14,10 +21,10 @@ public class KruskalArcosOrdenados{
         nodos = grafo.getNodos();
     }
 
-    public ArrayList<Pesado> Kruskal(){
+    public ArrayList<Integer> Kruskal(){
         ArrayList<Integer> T = new ArrayList<Integer>();
         do{
-            Pesado uv = arcos.first();
+            ArcoED uv = arcos.get(0);
             /*compu = DS.find(uv.source());
             compv = DS.find(uv.target());
             if(compu != compv){

@@ -1,3 +1,8 @@
+package Ejer1a;
+import disjointSet.EDDisjointSetCH;
+import grafo.ArcoED;
+import grafo.EDGrafoListaAdyacencias;
+import grafo.Nodo;
 
 public class ConexoDisjointSet{
 
