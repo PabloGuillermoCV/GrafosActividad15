@@ -4,7 +4,7 @@ import java.util.ArrayList;
 	que un grafo tenga N-1 arcos no implica que sea conexo
 	con disjoint set se chequea usando Findset, recorriendo la lista de arcos, SIN recorrer el grafo
 	con BFS se corrobora si se genera una foresta con una raiz 
-		(se podria coratar antes al encontrar un No conexo)
+		(se podria cortar antes al encontrar un No conexo)
 	Punto 2:
 		Lista Ordenada
 			-DS con Heurísticas
