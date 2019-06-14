@@ -15,8 +15,8 @@ public class EDDisjointSetCH{
      * Se encarga de crear un cjto e insertarlo en la estructura
      * @param n un entero que representará al elemento representante del cjto creado
      */
-    public NodoDS makeSet(int n, Nodo original){
-        NodoDS nodo = new NodoDS(n, original);
+    public NodoDS makeSet(int n){
+        NodoDS nodo = new NodoDS(n);
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
         cjtos[ultimaPos] = nodo;
         ultimaPos++;

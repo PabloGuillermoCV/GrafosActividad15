@@ -12,7 +12,7 @@ public class NodoDS {
       * Constructor de NodoDS
       * @param r entero que sera el representante del cjto
       */
-     public NodoDS(int r, Nodo n){
+     public NodoDS(int r){
          representante = r;
          padre = this;
 
