@@ -28,7 +28,7 @@ public class KruskalHeapSH{
 	             if(compu != compv){
 	                 DS.union(uv.source(), uv.target())
 	                 T.add(uv)
-	                 arcos.remove(uv);
+	                 
 	                 
 	             }
 	             */

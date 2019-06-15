@@ -19,6 +19,7 @@ public class KruskalArcosOrdenados{
         //inicializar todo aqui
         arcos = grafo.getArcos();
         nodos = grafo.getNodos();
+        DS = new EDDisjointSetCH();
     }
 
     public ArrayList<Integer> Kruskal(){
@@ -27,8 +28,8 @@ public class KruskalArcosOrdenados{
         	//Cuidado, puede entrar en ciclo infinito, ver
             ArcoED uv = arcos.get(0);
             
-            /*compu = DS.find(uv.source());
-            compv = DS.find(uv.target());
+            /*compu = DS.findSet(uv.source());
+            compv = DS.findSet(uv.target());
             if(compu != compv){
                 DS.union(uv.source(), uv.target())
                 T.add(uv)

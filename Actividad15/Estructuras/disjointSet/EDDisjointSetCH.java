@@ -8,21 +8,21 @@ public class EDDisjointSetCH{
         NOTA: Simular un arbol con un arreglo, como si estuvieramos usando un heap, sin ser un heap
     */
 
-    private NodoDS[] cjtos;
+    private Nodo[] cjtos;
     private int ultimaPos = 0;
 
     /**
      * Se encarga de crear un cjto e insertarlo en la estructura
      * @param n un entero que representará al elemento representante del cjto creado
      */
-    //TODO: ver si es necesario retornar el Nodo
-    public NodoDS makeSet(int n){
-        NodoDS nodo = new NodoDS(n);
+
+    public void makeSet(Nodo n){
+   
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo, o si es realmente necesario el arreglo
-        cjtos[ultimaPos] = nodo;
-        nodo.setPosEnDS(ultimaPos);
+        cjtos[ultimaPos] = n;
+        n.setPosEnDS(ultimaPos);
         ultimaPos++;
-        return nodo;
+        
     }
 
     /**
@@ -30,8 +30,8 @@ public class EDDisjointSetCH{
      * @param n un nodo pertenenciente a la estructura
      * @return el nodo que es representante del conjunto buscado 
      */
-    public NodoDS findSet(NodoDS n){
-        NodoDS padreN = n.getPadre();
+    public Nodo findSet(Nodo n){
+        Nodo padreN = n.getPadre();
         //Realizo la compresion de caminos al asignar recursivamente padres a los cjtos
         if(padreN != n)
             n.setPadre(findSet(padreN));
@@ -43,7 +43,7 @@ public class EDDisjointSetCH{
      * @param x nodo perteneciente a algun cojto
      * @param y nodo perteneciente a algun otro cjto
      */
-    public void union(NodoDS x, NodoDS y){
+    public void union(Nodo x, Nodo y){
         Link(findSet(x), findSet(y)); //Ojo, estoy pasando los nodos, esto hay que revisar por el findSet
     }
 
@@ -52,13 +52,13 @@ public class EDDisjointSetCH{
      * @param x representante del primer cjto
      * @param y representante del segundo cjto
      */
-    private void Link(NodoDS x, NodoDS y){
+    private void Link(Nodo x, Nodo y){
         int rankX = x.getRango();
         int rankY = y.getRango();
         if(rankX > rankY) {
             y.setPadre(x);
             cjtos[y.getPosEnDS()] = null;
-        	//TODO: ELiminar el conjunto que se adosa
+      
         }
         else{
             x.setPadre(y);
