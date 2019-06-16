@@ -1,5 +1,6 @@
 package disjointSet;
-import java.util.ArrayList;
+
+
 
 import grafo.Nodo;
 

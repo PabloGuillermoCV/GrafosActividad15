@@ -14,6 +14,9 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		cola= new ColaConEnlaces<Nodo>();
 	}
 	
+	/**
+	 * Metodo principal que se encarga de recorrer el grafo segun el algoritmo BFS
+	 */
 	public void doBFS() {
 		
 		for(Nodo v: graph.getNodos()) {
@@ -37,6 +40,9 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		
 	}
 	
+	/**
+	 * Metodo auxiliar que realiza la visita a los nodos encontrados por el algoritmo BFS
+	 */
 	private void visitarBFS() {
 		Nodo u; //Habria que inicializarlo en null? por si nunca entra al while?
 		while(!cola.isEmpty()) {

@@ -10,6 +10,9 @@ public class ColaConEnlaces<T> implements Queue<T>{
 		 tail = new Node<T>();
 		 size = 0;
 	 }
+	 /**
+	  * Dado un elemento, lo encola en la ED Cola
+	  */
 	 public void enqueue(T e){
 		Node<T> aux = new Node<T>();
 		aux.setElement(e);
@@ -23,6 +26,9 @@ public class ColaConEnlaces<T> implements Queue<T>{
 		 tail = aux;
 		 size++;
 	 }
+	 /**
+	  * Saca un elemento de la cola, eliminandolo en el proceso
+	  */
 	 public T dequeue() throws EmptyQueueException{
 		 T aux = null;
 		 if (size == 0)
@@ -34,9 +40,15 @@ public class ColaConEnlaces<T> implements Queue<T>{
 			 tail = null;
 		 return aux;
 	 }
+	 /**
+	  * devuelve el tamaño actual de la cola, en elementos
+	  */
 	 public int size(){
 		 return size;
 	 }
+	 /**
+	  * devuelve el elemento al frente de la cola, sin eliminarlo
+	  */
 	 public T front() throws EmptyQueueException{
 		 T aux = null;
 		 if(size == 0)
@@ -46,6 +58,9 @@ public class ColaConEnlaces<T> implements Queue<T>{
 		 }
 		return aux;	 
 	 }
+	 /**
+	  * Verifica si la cola esta vacia
+	  */
 	 public boolean isEmpty(){
 		 return size == 0;
 	 }

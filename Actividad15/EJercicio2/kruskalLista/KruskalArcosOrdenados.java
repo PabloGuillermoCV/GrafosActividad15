@@ -21,28 +21,37 @@ public class KruskalArcosOrdenados{
         nodos = grafo.getNodos();
         DS = new EDDisjointSetCH();
     }
-
-    public ArrayList<Integer> Kruskal(){
-        ArrayList<Integer> T = new ArrayList<Integer>();
+    
+    /**
+     * Metodoq ue se encarga de ejecutar el algoritmo de Kruskal sobre el grafo ingresado
+     * @return un arraylist de arcos que generan el arbol de cubrimiento minimal sobre el grafo ingresado
+     */
+    public ArrayList<ArcoED> Kruskal(){
+        ArrayList<ArcoED> T = new ArrayList<ArcoED>();
         do{
         	//Cuidado, puede entrar en ciclo infinito, ver
             ArcoED uv = arcos.get(0);
             
-            /*compu = DS.findSet(uv.source());
-            compv = DS.findSet(uv.target());
-            if(compu != compv){
-                DS.union(uv.source(), uv.target())
-                T.add(uv)
+            Nodo compu = DS.findSet(uv.getSource());
+            Nodo compv = DS.findSet(uv.getTarget());
+            if(!(compu.equals(compv) )){
+                DS.union(uv.getSource(), uv.getTarget());
+                T.add(uv);
                 arcos.remove(uv);
                 
             }
-            */
+            
 
         }
         while(T.size() < nodos.size()-1);
         return T;
     }
     
+	 /**
+	  * Metodo de ordenamiento para ordenar los arcos según el algoritmo mergeSort
+	  * @param A ArrayList de Arcos Pesados a ordenar
+	  * @return ArrayList de arcos ordenados por su peso
+	  */
     public ArrayList <ArcoED> mergeSort (ArrayList <ArcoED> A) {
     	if (A.size () == 1) {
     		return A;
@@ -69,6 +78,12 @@ public class KruskalArcosOrdenados{
     	}
     }
     
+	/**
+	 * Metodo de combinación del mergeSort
+	 * @param A1 arraylist izqueirda a combinar
+	 * @param A2 arraylist derecha a combinar
+	 * @param A arraylist que surge de combinar y ordenar los arreglos A1 y A2
+	 */
     private void merge (ArrayList <ArcoED> A1, ArrayList <ArcoED> A2, ArrayList <ArcoED> A) {
     	int IndiceA1 = 0;
     	int IndiceA2 = 0;
