@@ -68,4 +68,8 @@ public class EDDisjointSetCH{
                 y.setRango(rankY + 1);
         }
     }
+	
+	public int size(){
+		return cjtos.length;
+	}
 }

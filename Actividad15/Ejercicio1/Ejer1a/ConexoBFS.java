@@ -20,8 +20,8 @@ public class ConexoBFS{
     public boolean checkConexo(){
         //TODO: chequear el tema de la parametrizacion
         BFS<Nodo,ArcoED> ejercicio = new BreadthFirstSearch<Nodo,ArcoED>(grafo);
-        ejercicio.doBFS();
-        return true;
+        boolean esGrafoConexo=ejercicio.esConexo();
+        return esGrafoConexo;
     }
 
 }

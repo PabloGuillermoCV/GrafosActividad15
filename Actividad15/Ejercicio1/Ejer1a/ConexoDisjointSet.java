@@ -35,7 +35,7 @@ public class ConexoDisjointSet{
                 DS.union(v1,v2);
         }
         
-        return true;
+        return DS.size()==1;
     }
     
 }
