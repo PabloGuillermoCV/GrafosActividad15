@@ -1,6 +1,8 @@
 package Ejer1a;
 
 
+import java.util.ArrayList;
+
 import cola.*;
 import grafo.*;
 
@@ -18,8 +20,9 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	
 	/**
 	 * Metodo principal que se encarga de recorrer el grafo segun el algoritmo BFS
+	 * @throws FullQueueException 
 	 */
-	public void doBFS() {
+	public void doBFS() throws FullQueueException {
 		// ojo no se si dejar el metodo publico
 		
 		for(Nodo v: graph.getNodos()) {
@@ -45,10 +48,15 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 			}
 		}*/
 		
-		Nodo[] arregloNodos=graph.getNodos();
-		Nodo_origen nod_o=arregloNodos[0];
-		nod_o.setColor("gris");
-		cola.enqueue(nod_o);
+		ArrayList<Nodo> arregloNodos=graph.getNodos();
+		Nodo nodo_origen=arregloNodos.get(0);
+		nodo_origen.setColor("gris");
+		try {
+		cola.enqueue(nodo_origen);
+		}
+		catch(FullQueueException e){
+			System.out.println("La cola esta llena y no puede incorporar nuevo elemento");			
+		}
 		visitarBFS();
 		
 	}
@@ -93,8 +101,14 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	
 	}
 	
-	public boolean esConexo(){
-		doBFS();
+	public boolean esConexo() throws FullQueueException{
+		
+		try{
+			doBFS();
+		}
+		catch(FullQueueException e) {
+			System.out.println("La cola esta llena y no puede incorporar nuevo elemento");
+		}
 		int i=0;
 		boolean esGrafoConexo=true;
 		while ( esGrafoConexo ){
