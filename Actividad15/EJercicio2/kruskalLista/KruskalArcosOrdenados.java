@@ -28,22 +28,28 @@ public class KruskalArcosOrdenados{
      */
     public ArrayList<ArcoED> Kruskal(){
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
+        int i = 0;
+        //Inicializo la estructura DS
+        for(Nodo n : nodos) {
+        	DS.makeSet(n);
+        }
         do{
+        	
         	//Cuidado, puede entrar en ciclo infinito, ver
-            ArcoED uv = arcos.get(0);
-            
+            ArcoED uv = arcos.get(i);
+            System.out.println("Iteracion: " + i);
             Nodo compu = DS.findSet(uv.getSource());
             Nodo compv = DS.findSet(uv.getTarget());
             if(!(compu.equals(compv) )){
                 DS.union(uv.getSource(), uv.getTarget());
                 T.add(uv);
-                arcos.remove(uv);
+                i++;
                 
             }
             
 
         }
-        while(T.size() < nodos.size()-1);
+        while(T.size() < nodos.size()-1 | i == arcos.size() );
         return T;
     }
     
@@ -88,26 +94,25 @@ public class KruskalArcosOrdenados{
     	int IndiceA1 = 0;
     	int IndiceA2 = 0;
     	int IndiceA = 0;
-    	
     	while (IndiceA1 < A1.size () && IndiceA2 < A2.size ()) {
     		if (A1.get (IndiceA1).getPeso () < A2.get (IndiceA2).getPeso ()) {
-                A.set (IndiceA, A1.get (IndiceA1));
+                A.add(A1.get (IndiceA1));
                 IndiceA1++;
             }
     		else {
-                A.set (IndiceA, A2.get (IndiceA2));
+                A.add (A2.get (IndiceA2));
                 IndiceA2++;
             }
             IndiceA++;
     	}
     	
     	while (IndiceA1 < A1.size ()) {
-    		A.set (IndiceA, A1.get (IndiceA1));
+    		A.add(A1.get (IndiceA1));
     		IndiceA1++;
     		IndiceA++;
     	}
     	while (IndiceA2 < A2.size ()) {
-    		A.set (IndiceA, A2.get (IndiceA2));
+    		A.add (A2.get (IndiceA2));
     		IndiceA2++;
     		IndiceA++;
     	}

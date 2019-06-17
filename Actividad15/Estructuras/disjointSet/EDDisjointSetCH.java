@@ -25,6 +25,7 @@ public class EDDisjointSetCH{
    
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);
+        n.setPadre(n);
         ultimaPos++;
         
     }

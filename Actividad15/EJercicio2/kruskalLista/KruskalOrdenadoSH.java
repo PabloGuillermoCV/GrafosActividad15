@@ -25,22 +25,27 @@ public class KruskalOrdenadoSH{
      */
 	 public ArrayList<ArcoED> Kruskal(){
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
+        int i = 0;
+        //inicializo la estructura DS
+        for(Nodo n : nodos) {
+        	DS.makeSet(n);
+        }
         do{
         	//Cuidado, puede entrar en ciclo infinito, ver
-            ArcoED uv = arcos.get(0);
+            ArcoED uv = arcos.get(i);
             
             Nodo compu = DS.findSet(uv.getSource());
             Nodo compv = DS.findSet(uv.getTarget());
             if(! (compu.equals(compv) )){
                 DS.union(uv.getSource(), uv.getTarget());
                 T.add(uv);
-                arcos.remove(uv);
+                i++;
                 
             }
             
 
         }
-        while(T.size() < nodos.size()-1);
+        while(T.size() < nodos.size()-1 | i == arcos.size() );
         return T;
 	}
 	

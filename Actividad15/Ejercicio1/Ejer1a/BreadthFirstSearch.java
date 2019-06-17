@@ -28,7 +28,7 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 			v.setColor("blanco");
 		}
 		
-		for(int i=0; i <= hayDistancia.length; i++)
+		for(int i=0; i < hayDistancia.length; i++)
 		{
 			hayDistancia[i]=false;
 		}
@@ -105,7 +105,8 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		doBFS();
 		int i=0;
 		boolean esGrafoConexo=true;
-		while ( esGrafoConexo ){
+		while ( esGrafoConexo && i < hayDistancia.length ){
+			System.out.println(i + "length: " + hayDistancia.length);
 			if(hayDistancia[i] == false)
 			{
 				esGrafoConexo=false;

@@ -19,7 +19,6 @@ public class ConexoBFS{
      * @return si el grafo es conexo o no
      */
     public boolean checkConexo(){
-        //TODO: chequear el tema de la parametrizacion
         BFS<Nodo,ArcoED> ejercicio = new BreadthFirstSearch<Nodo,ArcoED>(grafo);
         boolean esGrafoConexo = false;
 		try {

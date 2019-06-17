@@ -26,8 +26,8 @@ public class EDGrafoListaAdyacencias{
         //con los nodos inicio y fin
         for(Pesado p : arcosEntrada){
         	//Problema acá con indexOf
-            Nodo n1 = nodos.get(nodos.indexOf(p.getArco().getNodoSource())); 
-            Nodo n2 = nodos.get(nodos.indexOf(p.getArco().getNodoTarget()));
+            Nodo n1 = buscarNodo(p.getArco().getNodoSource()); 
+            Nodo n2 = buscarNodo(p.getArco().getNodoTarget());
             int peso = p.getPeso();
             this.insertarArco(n1, n2, peso);
         }
@@ -45,6 +45,20 @@ public class EDGrafoListaAdyacencias{
      */
     public ArrayList<Nodo> getNodos(){
         return nodos;
+    }
+    
+    /**
+     * Dado un rotulo, busco el nodo en al ED asociado a ese rotulo (SE ASUME QUE LOS ROTULOS SON TODOS DISTINTOS)
+     * @param rot
+     * @return
+     */
+    private Nodo buscarNodo(int rot) {
+    	for(Nodo n : nodos) {
+    		if(n.getRotulo() == rot) {
+    			return n;
+    		}
+    	}
+    	return null;
     }
     
     /**

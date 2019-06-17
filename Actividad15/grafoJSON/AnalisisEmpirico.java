@@ -13,13 +13,14 @@ import kruskalHeap.KruskalHeapSH;
 import kruskalLista.KruskalArcosOrdenados;
 import kruskalLista.KruskalOrdenadoSH;
 
-import java.util.Date;
-import java.sql.Timestamp;
+
 
 
 	public class AnalisisEmpirico{
 		
 		public static void main(String[] args) throws IOException {
+			Grafo[] grafosComunes = new Grafo[10];
+			Grafo[] grafosConexos = new Grafo[10];
 			
 			try{
 				Grafo grafo1 = getGrafo(500,40000);
@@ -93,93 +94,105 @@ import java.sql.Timestamp;
 				Grafo grafo10C = getGrafoConexo(300,41258); 
 				System.out.println("Grafo Conexo con "+ grafo10C.getNodosCount() + " nodos y "+ grafo10C.getArcosCount() + " arcos construido");
 				
-				Grafo[] grafosComunes = {grafo1, grafo2, grafo3, grafo4, grafo5, grafo6, grafo7, grafo8, grafo9, grafo10};
-				Grafo[] grafosConexos = {grafo1C, grafo2C, grafo3C, grafo4C, grafo5C, grafo6C, grafo7C, grafo8C, grafo9C, grafo10C};
 				
-				//para cada grafo Comun creado, ejecuto el problema 1 según las 2 variantes y tomo los tiempos 
-				for(int i = 0; i < grafosComunes.length; i++) {
-					System.out.println("Estoy en el for de grafos comunes");
-					//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con BFS
-					EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosComunes[i]);
-					Date date = new Date();
-					long timeI = date.getTime();
-					Timestamp tI = new Timestamp(timeI);
-					ConexoBFS p1A = new ConexoBFS(ED);
-					p1A.checkConexo();
-					long timeF = date.getTime();
-					Timestamp tF = new Timestamp(timeF);
-					long dif = tF.getTime() - tI.getTime();
-					System.out.println("el tiempo para el Problema 1 por BFS para el grafo" + i+1 + "es: " + dif );
-					
-					//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con Disjoint-Set
-					Date date2 = new Date();
-					long timeI2 = date2.getTime();
-					Timestamp tI2 = new Timestamp(timeI2);
-					ConexoDisjointSet p1A2 = new ConexoDisjointSet(ED);
-					p1A2.checkConexo();
-					long timeF2 = date.getTime();
-					Timestamp tF2 = new Timestamp(timeF2);
-					long dif2 = tF2.getTime() - tI2.getTime();
-					System.out.println("el tiempo para el Problema 1 por Disjoint-Set para el grafo" + i+1 + "es: " + dif2 );
-				}
+				grafosComunes[0] = grafo1;
+				grafosComunes[1] = grafo2;
+				grafosComunes[2] = grafo3;
+				grafosComunes[3] = grafo4;
+				grafosComunes[4] = grafo5;
+				grafosComunes[5] = grafo6;
+				grafosComunes[6] = grafo7;
+				grafosComunes[7] = grafo8;
+				grafosComunes[8] = grafo9;
+				grafosComunes[9] = grafo10;
+	
+				grafosConexos[0] = grafo1C;
+				grafosConexos[1] = grafo2C;
+				grafosConexos[2] = grafo3C;
+				grafosConexos[3] = grafo4C;
+				grafosConexos[4] = grafo5C;
+				grafosConexos[5] = grafo6C;
+				grafosConexos[6] = grafo7C;
+				grafosConexos[7] = grafo8C;
+				grafosConexos[8] = grafo9C;
+				grafosConexos[9] = grafo10C;
 				
-				//para cada grafo Conexo creado, ejecuto el problema 2 según las 4 variantes y tomo los tiempos
-				for(int i = 0; i < grafosConexos.length; i++) {
-					System.out.println("Estoy en el for de grafos conexos");
-					//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set CON Heuristicas
-					EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosConexos[i]);
-					Date date = new Date();
-					long timeI = date.getTime();
-					Timestamp tI = new Timestamp(timeI);
-					KruskalArcosOrdenados p2A = new KruskalArcosOrdenados(ED);
-					p2A.Kruskal();
-					long timeF = date.getTime();
-					Timestamp tF = new Timestamp(timeF);
-					long dif = tF.getTime() - tI.getTime();
-					System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + i+1 + "C " + "es: " + dif );
-					
-					
-					//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set SIN Heuristicas
-					Date date2 = new Date();
-					long timeI2 = date2.getTime();
-					Timestamp tI2 = new Timestamp(timeI2);
-					KruskalOrdenadoSH p2A2 = new KruskalOrdenadoSH(ED);
-					p2A2.Kruskal();
-					long timeF2 = date2.getTime();
-					Timestamp tF2 = new Timestamp(timeF2);
-					long dif2 = tF2.getTime() - tI2.getTime();
-					System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + i+1 + "C " + "es: " + dif2 );
-					
-					
-					//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Heap y Disjoint-Set CON Heuristicas
-					Date date3 = new Date();
-					long timeI3 = date3.getTime();
-					Timestamp tI3 = new Timestamp(timeI3);
-					KruskalHeapCH p2A3 = new KruskalHeapCH(ED);
-					p2A3.minimumSpanningTree();
-					long timeF3 = date3.getTime();
-					Timestamp tF3 = new Timestamp(timeF3);
-					long dif3 = tF3.getTime() - tI3.getTime();
-					System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + i+1 + "C " + "es: " + dif3 );
-					
-					
-					
-					//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Heap y Disjoint-Set SIN Heuristicas
-					Date date4 = new Date();
-					long timeI4 = date4.getTime();
-					Timestamp tI4 = new Timestamp(timeI4);
-					KruskalHeapSH p2A4 = new KruskalHeapSH(ED);
-					p2A4.minimumSpanningTree();
-					long timeF4 = date4.getTime();
-					Timestamp tF4 = new Timestamp(timeF4);
-					long dif4 = tF4.getTime() - tI4.getTime();
-					System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + i+1 + "C " + "es: " + dif4 );
-				}
 		
 				
 				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
+			}
+			
+			//para cada grafo Comun creado, ejecuto el problema 1 según las 2 variantes y tomo los tiempos 
+			for(int i = 0; i < grafosComunes.length; i++) {
+	
+				//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con BFS
+				EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosComunes[i]);
+				
+				long timeI = System.nanoTime();
+				ConexoBFS p1A = new ConexoBFS(ED);
+				System.out.println("Entro a resolver checkConexo del grafo" + (i+1));
+				p1A.checkConexo();
+				long timeF = System.nanoTime();
+				long dif = timeF - timeI;
+				System.out.println("el tiempo para el Problema 1 por BFS para el grafo" + (i+1) + " es: " + dif);
+				
+				//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con Disjoint-Set
+			
+				long timeI2 = System.nanoTime();
+				ConexoDisjointSet p1A2 = new ConexoDisjointSet(ED);
+				System.out.println("Entro a resolver checkConexoDS del grafo" + (i+1));
+				p1A2.checkConexo();
+				long timeF2 = System.nanoTime();
+				long dif2 = timeF2 - timeI2;
+				System.out.println("el tiempo para el Problema 1 por Disjoint-Set para el grafo" + (i+1) + " es: " + dif2 );
+			}
+			
+			//para cada grafo Conexo creado, ejecuto el problema 2 según las 4 variantes y tomo los tiempos
+			for(int i = 0; i < grafosConexos.length; i++) {
+				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set CON Heuristicas
+				EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosConexos[i]);
+				System.out.println("Estoy en el for de grafos conexos");
+				long timeI = System.nanoTime();
+				KruskalArcosOrdenados p2A = new KruskalArcosOrdenados(ED);
+				System.out.println("Entro a resolver Kruskal del grafoC" + (i+1));
+				p2A.Kruskal();
+				long timeF = System.nanoTime();
+				long dif = timeF - timeI;
+				System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + dif );
+				
+				
+				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set SIN Heuristicas
+		
+				long timeI2 = System.nanoTime();
+				KruskalOrdenadoSH p2A2 = new KruskalOrdenadoSH(ED);
+				System.out.println("Entro a resolver checkConexo del grafoC" + (i+1));
+				p2A2.Kruskal();
+				long timeF2 = System.nanoTime();
+				long dif2 = timeF2 - timeI2;
+				System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + dif2 );
+				
+				
+				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Heap y Disjoint-Set CON Heuristicas
+			
+				long timeI3 = System.nanoTime();
+				KruskalHeapCH p2A3 = new KruskalHeapCH(ED);
+				p2A3.minimumSpanningTree();
+				long timeF3 = System.nanoTime();
+				long dif3 = timeF3 - timeI3;
+				System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + dif3 );
+				
+				
+				
+				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Heap y Disjoint-Set SIN Heuristicas
+	
+				long timeI4 = System.nanoTime();
+				KruskalHeapSH p2A4 = new KruskalHeapSH(ED);
+				p2A4.minimumSpanningTree();
+				long timeF4 = System.nanoTime();
+				long dif4 = timeF4 - timeI4;
+				System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + dif4 );
 			}
 			
 			

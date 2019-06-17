@@ -19,6 +19,7 @@ public class EDDisjointSetSH{
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);
+        n.setPadre(n);
         ultimaPos++;
     }
 
