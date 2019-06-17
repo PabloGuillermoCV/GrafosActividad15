@@ -42,10 +42,11 @@ public class KruskalOrdenadoSH{
                 i++;
                 
             }
+            i++;
             
 
         }
-        while(T.size() < nodos.size()-1 | i == arcos.size() );
+        while(i < arcos.size()-1 );
         return T;
 	}
 	
@@ -93,23 +94,23 @@ public class KruskalOrdenadoSH{
     	
     	while (IndiceA1 < A1.size () && IndiceA2 < A2.size ()) {
     		if (A1.get (IndiceA1).getPeso () < A2.get (IndiceA2).getPeso ()) {
-                A.set (IndiceA, A1.get (IndiceA1));
+                A.add(A1.get (IndiceA1));
                 IndiceA1++;
             }
     		else {
-                A.set (IndiceA, A2.get (IndiceA2));
+                A.add (A2.get (IndiceA2));
                 IndiceA2++;
             }
             IndiceA++;
     	}
     	
     	while (IndiceA1 < A1.size ()) {
-    		A.set (IndiceA, A1.get (IndiceA1));
+    		A.add ( A1.get (IndiceA1));
     		IndiceA1++;
     		IndiceA++;
     	}
     	while (IndiceA2 < A2.size ()) {
-    		A.set (IndiceA, A2.get (IndiceA2));
+    		A.add ( A2.get (IndiceA2));
     		IndiceA2++;
     		IndiceA++;
     	}

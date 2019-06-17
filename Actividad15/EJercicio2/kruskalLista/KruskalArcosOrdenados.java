@@ -37,7 +37,6 @@ public class KruskalArcosOrdenados{
         	
         	//Cuidado, puede entrar en ciclo infinito, ver
             ArcoED uv = arcos.get(i);
-            System.out.println("Iteracion: " + i);
             Nodo compu = DS.findSet(uv.getSource());
             Nodo compv = DS.findSet(uv.getTarget());
             if(!(compu.equals(compv) )){
@@ -46,10 +45,11 @@ public class KruskalArcosOrdenados{
                 i++;
                 
             }
+            i++;
             
 
         }
-        while(T.size() < nodos.size()-1 | i == arcos.size() );
+        while(i < arcos.size()-1 );
         return T;
     }
     

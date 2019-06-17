@@ -13,12 +13,23 @@ public class KruskalHeapSH{
     
     public KruskalHeapSH(EDGrafoListaAdyacencias g) {
     	nodos = g.getNodos();
-    	arcos = new Heap<ArcoED,Integer>(g.getArcos().size(), new Comparator<ArcoED>() );
+    	arcos = new Heap<ArcoED,Integer>(g.getArcos().size()+1, new Comparator<ArcoED>() );
+    	for(ArcoED a : g.getArcos()) {
+	    	try {
+				arcos.insert(a, a.getPeso());
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
     	DS = new EDDisjointSetSH(nodos.size());
     }
     
     public ArrayList<ArcoED> minimumSpanningTree() {
     	 ArrayList<ArcoED> T = new ArrayList<ArcoED>();
+    	 for(Nodo n : nodos) {
+         	DS.makeSet(n);
+         }
          do{
              try {
 				ArcoED uv = arcos.removeMin().getKey();
@@ -39,7 +50,7 @@ public class KruskalHeapSH{
              
 
          }
-         while(T.size() < nodos.size()-1);
+         while(!arcos.isEmpty());
          return T;
     }
     

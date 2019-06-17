@@ -1,6 +1,6 @@
 package grafo;
 
-public class ArcoED{
+public class ArcoED implements Comparable<ArcoED>{
     private Nodo source;
     private Nodo target;
     private int peso;
@@ -52,5 +52,15 @@ public class ArcoED{
     public void setPosArcoPredecesor(int pos){
         posArcoPredecesor = pos;
     }
+
+	@Override
+	public int compareTo(ArcoED a) {
+		if(peso > a.getPeso())
+			return 1;
+		if(peso < a.getPeso())
+			return -1;
+		
+		return 0;
+	}
 
 }

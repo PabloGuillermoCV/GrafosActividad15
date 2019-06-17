@@ -132,7 +132,7 @@ import kruskalLista.KruskalOrdenadoSH;
 				
 				long timeI = System.nanoTime();
 				ConexoBFS p1A = new ConexoBFS(ED);
-				System.out.println("Entro a resolver checkConexo del grafo" + (i+1));
+	
 				p1A.checkConexo();
 				long timeF = System.nanoTime();
 				long dif = timeF - timeI;
@@ -142,7 +142,7 @@ import kruskalLista.KruskalOrdenadoSH;
 			
 				long timeI2 = System.nanoTime();
 				ConexoDisjointSet p1A2 = new ConexoDisjointSet(ED);
-				System.out.println("Entro a resolver checkConexoDS del grafo" + (i+1));
+
 				p1A2.checkConexo();
 				long timeF2 = System.nanoTime();
 				long dif2 = timeF2 - timeI2;
@@ -153,10 +153,10 @@ import kruskalLista.KruskalOrdenadoSH;
 			for(int i = 0; i < grafosConexos.length; i++) {
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set CON Heuristicas
 				EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosConexos[i]);
-				System.out.println("Estoy en el for de grafos conexos");
+			
 				long timeI = System.nanoTime();
 				KruskalArcosOrdenados p2A = new KruskalArcosOrdenados(ED);
-				System.out.println("Entro a resolver Kruskal del grafoC" + (i+1));
+		
 				p2A.Kruskal();
 				long timeF = System.nanoTime();
 				long dif = timeF - timeI;
@@ -167,7 +167,6 @@ import kruskalLista.KruskalOrdenadoSH;
 		
 				long timeI2 = System.nanoTime();
 				KruskalOrdenadoSH p2A2 = new KruskalOrdenadoSH(ED);
-				System.out.println("Entro a resolver checkConexo del grafoC" + (i+1));
 				p2A2.Kruskal();
 				long timeF2 = System.nanoTime();
 				long dif2 = timeF2 - timeI2;

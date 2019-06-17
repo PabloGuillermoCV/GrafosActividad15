@@ -14,16 +14,27 @@ public class KruskalHeapCH{
     
     public KruskalHeapCH(EDGrafoListaAdyacencias g) {
     	nodos = g.getNodos();
-    	arcos = new Heap<ArcoED,Integer>(g.getArcos().size(), new Comparator<ArcoED>() );
+    	arcos = new Heap<ArcoED,Integer>(g.getArcos().size()+1, new Comparator<ArcoED>() );
+      	for(ArcoED a : g.getArcos()) {
+	    	try {
+				arcos.insert(a, a.getPeso());
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
     	DS = new EDDisjointSetCH(nodos.size());
     }
 	
 	/**
-	 * Metodo que se encarga de obtener el arbold e cubrimiento minimal segun Kruskal	
+	 * Metodo que se encarga de obtener el arbol de cubrimiento minimal segun Kruskal	
 	 * @return arraylist de arcos que generan el arbol de cubrimiento minimal para el grafo ingresado
 	 */
 	public ArrayList<ArcoED> minimumSpanningTree() {
    	 ArrayList<ArcoED> T = new ArrayList<ArcoED>();
+	   	for(Nodo n : nodos) {
+	    	DS.makeSet(n);
+	    }
         do{
             try {
 				ArcoED uv = arcos.removeMin().getKey();
@@ -44,7 +55,7 @@ public class KruskalHeapCH{
             
 
         }
-        while(T.size() < nodos.size()-1);
+        while(!arcos.isEmpty());
         return T;
    }
 }

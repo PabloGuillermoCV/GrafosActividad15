@@ -21,7 +21,9 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	/**
 	 * Metodo principal que se encarga de recorrer el grafo segun el algoritmo BFS
 	 */
+	//El ciclo infinito se genera acá a veces con el grafo9
 	public void doBFS() {
+	
 		// ojo no se si dejar el metodo publico
 		
 		for(Nodo v: graph.getNodos()) {
@@ -69,8 +71,11 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		while(!cola.isEmpty()) {
 			try {
 				u=cola.front();
+				
+				
 				for(ArcoED e: graph.incidentes(u)){ 
 					Nodo z = graph.getOpuesto(u, e);
+	
 					if( z.getColor().equals( "blanco")) {
 						hayDistancia[posicion]=true;
 						z.setColor("gris");
@@ -106,7 +111,6 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		int i=0;
 		boolean esGrafoConexo=true;
 		while ( esGrafoConexo && i < hayDistancia.length ){
-			System.out.println(i + "length: " + hayDistancia.length);
 			if(hayDistancia[i] == false)
 			{
 				esGrafoConexo=false;
