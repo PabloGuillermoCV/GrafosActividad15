@@ -1,6 +1,7 @@
 package kruskalLista;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import disjointSet.EDDisjointSetCH;
 import grafo.ArcoED;
@@ -28,28 +29,24 @@ public class KruskalArcosOrdenados{
      */
     public ArrayList<ArcoED> Kruskal(){
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
-        int i = 0;
         //Inicializo la estructura DS
         for(Nodo n : nodos) {
         	DS.makeSet(n);
         }
-        do{
+        ListIterator <ArcoED> iterator = arcos.listIterator();
+        while((T.size() != (nodos.size()-1)) && iterator.hasNext () ){
         	
-        	//Cuidado, puede entrar en ciclo infinito, ver
-            ArcoED uv = arcos.get(i);
+        	ArcoED uv = iterator.next ();
             Nodo compu = DS.findSet(uv.getSource());
             Nodo compv = DS.findSet(uv.getTarget());
             if(!(compu.equals(compv) )){
                 DS.union(uv.getSource(), uv.getTarget());
-                T.add(uv);
-                i++;
                 
+                T.add(uv);
+                   
             }
-            i++;
-            
-
+	 
         }
-        while(i < arcos.size()-1 );
         return T;
     }
     

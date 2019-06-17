@@ -11,9 +11,11 @@ public class EDDisjointSetCH{
 
     private Nodo[] cjtos;
     private int ultimaPos = 0;
-
+    private Nodo raiz; 
+    
     public EDDisjointSetCH(int numeroNodos) {
     	cjtos = new Nodo[numeroNodos];
+    	raiz = null;
     }
     
     /**
@@ -22,7 +24,9 @@ public class EDDisjointSetCH{
      */
 
     public void makeSet(Nodo n){
-   
+    	if(ultimaPos == 0) {
+    		raiz = n;
+    	}
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);
         n.setPadre(n);
@@ -36,10 +40,14 @@ public class EDDisjointSetCH{
      * @return el nodo que es representante del conjunto buscado 
      */
     public Nodo findSet(Nodo n){
+    	if(n.equals(raiz))
+    		return n;
+    	
         Nodo padreN = n.getPadre();
         //Realizo la compresion de caminos al asignar recursivamente padres a los cjtos
         if(padreN != n)
-            n.setPadre(findSet(padreN));
+        	findSet(n.getPadre());
+            n.setPadre(raiz);
         return padreN;
     }
 

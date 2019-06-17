@@ -66,9 +66,9 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	 * Metodo auxiliar que realiza la visita a los nodos encontrados por el algoritmo BFS
 	 */
 	private void visitarBFS() {
-		Nodo u; //Habria que inicializarlo en null? por si nunca entra al while?
+		Nodo u = null; 
 		int posicion=0;
-		while(!cola.isEmpty()) {
+		while(!cola.isEmpty() && posicion < graph.getArcos().size()) {
 			try {
 				u=cola.front();
 				
@@ -76,7 +76,7 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 				for(ArcoED e: graph.incidentes(u)){ 
 					Nodo z = graph.getOpuesto(u, e);
 	
-					if( z.getColor().equals( "blanco")) {
+					if( z.getColor().equals( "blanco") && !(z.equals(u))) {
 						hayDistancia[posicion]=true;
 						z.setColor("gris");
 						cola.enqueue(z);
@@ -94,10 +94,10 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 				}
 			}
 			catch(EmptyQueueException e) {
-				
+				System.out.println("Empty Queue");
 			}
 			catch(FullQueueException e) {
-				
+				System.out.println("Full Queue");
 			}
 		
 	}

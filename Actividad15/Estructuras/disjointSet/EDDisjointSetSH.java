@@ -6,7 +6,8 @@ public class EDDisjointSetSH{
 
     private Nodo[] cjtos;
     private int ultimaPos = 0;
-
+    private Nodo raiz;
+    
     public EDDisjointSetSH(int numeroNodos) {
     	cjtos = new Nodo[numeroNodos];
     }
@@ -16,6 +17,8 @@ public class EDDisjointSetSH{
      * @param n un entero que representarÃ¡ al elemento representante del cjto creado
      */
     public void makeSet(Nodo n){
+    	if(ultimaPos == 0)
+    		raiz = n;
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);
@@ -29,6 +32,8 @@ public class EDDisjointSetSH{
      * @return el nodo que es representante del conjunto buscado o NULL en caso de no encontrarlo
      */
     public Nodo findSet(Nodo n){
+    	if(n.equals(raiz))
+    		return raiz;
         Nodo padreN = n.getPadre();
         //SIN HEURISTICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
         if(padreN != n)

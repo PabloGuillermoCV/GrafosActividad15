@@ -30,7 +30,7 @@ public class KruskalHeapSH{
     	 for(Nodo n : nodos) {
          	DS.makeSet(n);
          }
-         do{
+    	 while(T.size() != (nodos.size()-1) && !arcos.isEmpty()){
              try {
 				ArcoED uv = arcos.removeMin().getKey();
 				Nodo compu = DS.findSet(uv.getSource());
@@ -50,7 +50,7 @@ public class KruskalHeapSH{
              
 
          }
-         while(!arcos.isEmpty());
+         
          return T;
     }
     
