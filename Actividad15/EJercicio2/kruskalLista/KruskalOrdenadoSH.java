@@ -18,6 +18,10 @@ public class KruskalOrdenadoSH{
         arcos = mergeSort (arcos);
         nodos = grafo.getNodos();
         DS = new EDDisjointSetSH(nodos.size());
+        //inicializo la estructura DS
+        for(Nodo n : nodos) {
+        	DS.makeSet(n);
+        }
     }
 	
     /**
@@ -26,11 +30,8 @@ public class KruskalOrdenadoSH{
      */
 	 public ArrayList<ArcoED> Kruskal(){
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
-        int i = 0;
-        //inicializo la estructura DS
-        for(Nodo n : nodos) {
-        	DS.makeSet(n);
-        }
+    
+   
         ListIterator <ArcoED> iterator = arcos.listIterator();
         while((T.size() != (nodos.size()-1)) && iterator.hasNext () ){
         	
@@ -87,8 +88,7 @@ public class KruskalOrdenadoSH{
     private void merge (ArrayList <ArcoED> A1, ArrayList <ArcoED> A2, ArrayList <ArcoED> A) {
     	int IndiceA1 = 0;
     	int IndiceA2 = 0;
-    	int IndiceA = 0;
-    	
+    
     	while (IndiceA1 < A1.size () && IndiceA2 < A2.size ()) {
     		if (A1.get (IndiceA1).getPeso () < A2.get (IndiceA2).getPeso ()) {
                 A.add(A1.get (IndiceA1));
@@ -97,19 +97,17 @@ public class KruskalOrdenadoSH{
     		else {
                 A.add (A2.get (IndiceA2));
                 IndiceA2++;
-            }
-            IndiceA++;
+            }  
     	}
     	
     	while (IndiceA1 < A1.size ()) {
     		A.add ( A1.get (IndiceA1));
     		IndiceA1++;
-    		IndiceA++;
+    	
     	}
     	while (IndiceA2 < A2.size ()) {
     		A.add ( A2.get (IndiceA2));
     		IndiceA2++;
-    		IndiceA++;
     	}
     }
 }

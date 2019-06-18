@@ -16,11 +16,15 @@ public class KruskalArcosOrdenados{
     EDDisjointSetCH DS;
 
     public KruskalArcosOrdenados(EDGrafoListaAdyacencias grafo){
-        //inicializar todo aqui
         arcos = grafo.getArcos();
+        //Ordeno los arcos de peso menor a mayor
         arcos = mergeSort (arcos);
         nodos = grafo.getNodos();
         DS = new EDDisjointSetCH(nodos.size());
+        //Inicializo la estructura DS
+        for(Nodo n : nodos) {
+        	DS.makeSet(n);
+        }
     }
     
     /**
@@ -29,21 +33,17 @@ public class KruskalArcosOrdenados{
      */
     public ArrayList<ArcoED> Kruskal(){
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
-        //Inicializo la estructura DS
-        for(Nodo n : nodos) {
-        	DS.makeSet(n);
-        }
+        //Obtengo un iterador y recorro los arcos para obtener el arbol de cubrimiento
         ListIterator <ArcoED> iterator = arcos.listIterator();
         while((T.size() != (nodos.size()-1)) && iterator.hasNext () ){
         	
         	ArcoED uv = iterator.next ();
             Nodo compu = DS.findSet(uv.getSource());
             Nodo compv = DS.findSet(uv.getTarget());
+            //Obtenidos los nodos del arco minimal actual, si estos NO estaban en un mismo conjunto, los uno
             if(!(compu.equals(compv) )){
                 DS.union(uv.getSource(), uv.getTarget());
-                
                 T.add(uv);
-                   
             }
 	 
         }
@@ -71,10 +71,10 @@ public class KruskalArcosOrdenados{
     		for (int I = mitad; I < A.size (); I++) {
     			ADerecho.add (A.get (I));
     		}
-    		
+    		//Obtenidas las mitades del arreglo original, hago mergeSort con las mitades
     		AIzquierdo = mergeSort (AIzquierdo);
     		ADerecho = mergeSort (ADerecho);
-    		
+    		//habiendo ordenado las mtiades recursivamente, procedo a combinar y obtener un nuevo arreglo donde todo esta ordenado
     		ArrayList <ArcoED> AOrdenado = new ArrayList <ArcoED> ();
     		merge (AIzquierdo, ADerecho, AOrdenado);
     		return AOrdenado;
@@ -90,7 +90,6 @@ public class KruskalArcosOrdenados{
     private void merge (ArrayList <ArcoED> A1, ArrayList <ArcoED> A2, ArrayList <ArcoED> A) {
     	int IndiceA1 = 0;
     	int IndiceA2 = 0;
-    	int IndiceA = 0;
     	while (IndiceA1 < A1.size () && IndiceA2 < A2.size ()) {
     		if (A1.get (IndiceA1).getPeso () < A2.get (IndiceA2).getPeso ()) {
                 A.add(A1.get (IndiceA1));
@@ -99,19 +98,16 @@ public class KruskalArcosOrdenados{
     		else {
                 A.add (A2.get (IndiceA2));
                 IndiceA2++;
-            }
-            IndiceA++;
+            } 
     	}
     	
     	while (IndiceA1 < A1.size ()) {
     		A.add(A1.get (IndiceA1));
     		IndiceA1++;
-    		IndiceA++;
     	}
     	while (IndiceA2 < A2.size ()) {
     		A.add (A2.get (IndiceA2));
     		IndiceA2++;
-    		IndiceA++;
     	}
     }
 }

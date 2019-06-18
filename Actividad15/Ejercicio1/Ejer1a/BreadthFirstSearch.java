@@ -10,44 +10,20 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	
 	protected EDGrafoListaAdyacencias graph;
 	protected Queue<Nodo> cola;
-	protected boolean[] hayDistancia;
+
 	
 	public BreadthFirstSearch(EDGrafoListaAdyacencias g){
 		graph = g;
 		cola= new ColaConEnlaces<Nodo>();
-		hayDistancia= new boolean[g.getNodos().size()-1]; 
+		
 	}
 	
 	/**
 	 * Metodo principal que se encarga de recorrer el grafo segun el algoritmo BFS
 	 */
 	//El ciclo infinito se genera acá a veces con el grafo9
-	public void doBFS() {
+	public int doBFS() {
 	
-		// ojo no se si dejar el metodo publico
-		
-		for(Nodo v: graph.getNodos()) {
-			v.setColor("blanco");
-		}
-		
-		for(int i=0; i < hayDistancia.length; i++)
-		{
-			hayDistancia[i]=false;
-		}
-		/*
-		for(Nodo v: graph.getNodos()) {
-			
-			if (v.getColor() == "blanco") {
-				v.setColor("gris");
-				try {
-					cola.enqueue(v);
-				} catch (FullQueueException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				visitarBFS();
-			}
-		}*/
 		
 		ArrayList<Nodo> arregloNodos=graph.getNodos();
 		Nodo nodo_origen=arregloNodos.get(0);
@@ -58,36 +34,37 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		catch(FullQueueException e){
 			System.out.println("La cola esta llena y no puede incorporar nuevo elemento");			
 		}
-		visitarBFS();
+		int visitados = visitarBFS();
+		return visitados;
 		
 	}
 	
 	/**
 	 * Metodo auxiliar que realiza la visita a los nodos encontrados por el algoritmo BFS
 	 */
-	private void visitarBFS() {
+	private int visitarBFS() {
 		Nodo u = null; 
-		int posicion=0;
+		int posicion=1;
 		while(!cola.isEmpty() && posicion < graph.getArcos().size()) {
 			try {
 				u=cola.front();
 				
-				
+				//Para cada arco incidente al nodo obtenido de la cola
 				for(ArcoED e: graph.incidentes(u)){ 
+					//Obtengo el nodo opuesto según el arco que estoy considerando en este momento
 					Nodo z = graph.getOpuesto(u, e);
-	
-					if( z.getColor().equals( "blanco") && !(z.equals(u))) {
-						hayDistancia[posicion]=true;
+					//Verifico si el nodo obtenido es Blanco, si lo es, lo agrego a la cola y sumo 1 al contador de nodos visitados
+					if( z.getColor().equals("blanco") && !(z.equals(u))) {
 						z.setColor("gris");
 						cola.enqueue(z);
 						posicion++;
-						//revisar bien  si aca aumenta la posicion y lo nuevo que
-						//se agrego
 					}
+					
 					else
 					{
 						u.setColor("negro");
 						cola.dequeue();
+						break;
 					}
 						
 				
@@ -99,26 +76,22 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 			catch(FullQueueException e) {
 				System.out.println("Full Queue");
 			}
-		
+			
 	}
 
-	
+		return posicion;
 	}
 	
+	/**
+	 * determina si un grafo es Conexo o No
+	 */
 	public boolean esConexo() throws FullQueueException{
 		
-		doBFS();
-		int i=0;
-		boolean esGrafoConexo=true;
-		while ( esGrafoConexo && i < hayDistancia.length ){
-			if(hayDistancia[i] == false)
-			{
-				esGrafoConexo=false;
-			}
-			i++;
-		}
+		//Realizo el BFS y cuento cuantos nodos visité
+		int visitados = doBFS();
 		
-		return esGrafoConexo;
+		//si con un solo BFS recorrí todo el grafo y marqué todos los nodos, entonces, el grafo es conexo
+		return visitados == graph.getNodos().size();
 	}
 	
 	

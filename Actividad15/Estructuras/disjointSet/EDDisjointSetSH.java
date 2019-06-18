@@ -32,14 +32,13 @@ public class EDDisjointSetSH{
      * @return el nodo que es representante del conjunto buscado o NULL en caso de no encontrarlo
      */
     public Nodo findSet(Nodo n){
-    	if(n.equals(raiz))
-    		return raiz;
+   
         Nodo padreN = n.getPadre();
-        //SIN HEURISTICA, solo devuelvo o el padre del cjto, asumiendo que el elemento pasado NO es el representante, o el nodo en si
-        if(padreN != n)
-           return padreN;
-
-        return n;
+        //SIN HEURISTICA, solo devuelvo el representante del cjto, sin comprimir los caminos hasta la raiz
+        if(padreN.getRotulo() != n.getRotulo())
+           return findSet(padreN);
+        else
+        	return n;
     }
 
     /**
@@ -50,8 +49,8 @@ public class EDDisjointSetSH{
     public void union(Nodo x, Nodo y){
        Nodo RepresentanteX = findSet(x);
        Nodo RepresentanteY = findSet(y);
-       //SIN HEURISTICA! adoso el elemento y a x SIEMPRE
-       RepresentanteY.setPadre(RepresentanteX);
+       //SIN HEURISTICA! adoso el cjto x a y SIEMPRE
+       RepresentanteX.setPadre(RepresentanteY);
        cjtos[RepresentanteY.getPosEnDS()] = null;
        int dif = RepresentanteX.getRango() - RepresentanteY.getRango();
        if(dif < 0)

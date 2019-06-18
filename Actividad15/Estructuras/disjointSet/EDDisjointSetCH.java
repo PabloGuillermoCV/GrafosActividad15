@@ -40,15 +40,13 @@ public class EDDisjointSetCH{
      * @return el nodo que es representante del conjunto buscado 
      */
     public Nodo findSet(Nodo n){
-    	if(n.equals(raiz))
-    		return n;
-    	
         Nodo padreN = n.getPadre();
         //Realizo la compresion de caminos al asignar recursivamente padres a los cjtos
-        if(padreN != n)
-        	findSet(n.getPadre());
-            n.setPadre(raiz);
-        return padreN;
+        if(!(padreN.getRotulo() == n.getRotulo())) {
+        	n.setPadre(findSet(padreN));
+        }
+        
+        return n.getPadre();
     }
 
     /**

@@ -14,6 +14,7 @@ public class Nodo{
     public Nodo(int r){
         rotulo = r;
         adyacentes = new ArrayList<ArcoED>();
+        color = "blanco";
     }
     
     public int getRango() {
