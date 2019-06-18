@@ -48,27 +48,33 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 		while(!cola.isEmpty() && posicion < graph.getArcos().size()) {
 			try {
 				u=cola.front();
-				
-				//Para cada arco incidente al nodo obtenido de la cola
-				for(ArcoED e: graph.incidentes(u)){ 
-					//Obtengo el nodo opuesto según el arco que estoy considerando en este momento
-					Nodo z = graph.getOpuesto(u, e);
-					//Verifico si el nodo obtenido es Blanco, si lo es, lo agrego a la cola y sumo 1 al contador de nodos visitados
-					if( z.getColor().equals("blanco") && !(z.equals(u))) {
-						z.setColor("gris");
-						cola.enqueue(z);
-						posicion++;
-					}
-					
-					else
-					{
-						u.setColor("negro");
-						cola.dequeue();
-						break;
-					}
-						
-				
+				//Si el nodo es una hoja sin nodos incidentes, directamente lo desencolo
+				if(graph.incidentes(u).isEmpty()) {
+					u.setColor("negro");
+					cola.dequeue();
 				}
+				else {
+					//Para cada arco incidente al nodo obtenido de la cola
+					for(ArcoED e: graph.incidentes(u)){ 
+						//Obtengo el nodo opuesto según el arco que estoy considerando en este momento
+						Nodo z = graph.getOpuesto(u, e);
+						//Verifico si el nodo obtenido es Blanco, si lo es, lo agrego a la cola y sumo 1 al contador de nodos visitados
+						if( z.getColor().equals("blanco") && !(z.equals(u))) {
+							z.setColor("gris");
+							cola.enqueue(z);
+							posicion++;
+						}
+						
+						else
+						{
+							u.setColor("negro");
+							cola.dequeue();
+							break;
+						}
+					}
+				}
+			
+				
 			}
 			catch(EmptyQueueException e) {
 				System.out.println("Empty Queue");
