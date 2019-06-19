@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import grafo.Nodo;
 
 public class EDDisjointSetCH{
-    /*
-        NOTA: Simular un arbol con un arreglo, como si estuvieramos usando un heap, sin ser un heap
-    */
+   
 
     private Nodo[] cjtos;
     private int ultimaPos = 0;

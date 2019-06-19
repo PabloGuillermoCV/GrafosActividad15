@@ -133,7 +133,7 @@ import kruskalLista.KruskalOrdenadoSH;
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
+					
 			//para cada grafo Comun creado, ejecuto el problema 1 según las 2 variantes y tomo los tiempos 
 			for(int i = 0; i < grafosComunes.length; i++) {
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con BFS
