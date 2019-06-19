@@ -10,10 +10,10 @@ public class KruskalHeapCH{
 	
 	private PriorityQueue<ArcoED,Integer> arcos;
     private EDDisjointSetCH DS;
-    private ArrayList<Nodo> nodos;
+    private int cantNodos;
     
     public KruskalHeapCH(EDGrafoListaAdyacencias g) {
-    	nodos = g.getNodos();
+    
     	arcos = new Heap<ArcoED,Integer>(g.getArcos().size()+1, new Comparator<ArcoED>() );
       	for(ArcoED a : g.getArcos()) {
 	    	try {
@@ -23,7 +23,8 @@ public class KruskalHeapCH{
 				e.printStackTrace();
 			}
 	    }
-    	DS = new EDDisjointSetCH(nodos.size());
+    	DS = new EDDisjointSetCH(g.getNodos());
+    	cantNodos = g.getNodos().size();
     }
 	
 	/**
@@ -32,10 +33,7 @@ public class KruskalHeapCH{
 	 */
 	public ArrayList<ArcoED> minimumSpanningTree() {
    	 ArrayList<ArcoED> T = new ArrayList<ArcoED>();
-	   	for(Nodo n : nodos) {
-	    	DS.makeSet(n);
-	    }
-	   	while(T.size() != (nodos.size()-1) && !arcos.isEmpty()){
+	   	while(T.size() != (cantNodos-1)){
             try {
 				ArcoED uv = arcos.removeMin().getKey();
 				Nodo compu = DS.findSet(uv.getSource());

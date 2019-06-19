@@ -2,6 +2,8 @@ package disjointSet;
 
 
 
+import java.util.ArrayList;
+
 import grafo.Nodo;
 
 public class EDDisjointSetCH{
@@ -13,9 +15,12 @@ public class EDDisjointSetCH{
     private int ultimaPos = 0;
     private Nodo raiz; 
     
-    public EDDisjointSetCH(int numeroNodos) {
-    	cjtos = new Nodo[numeroNodos];
+    public EDDisjointSetCH(ArrayList<Nodo> nodos) {
+    	cjtos = new Nodo[nodos.size()];
     	raiz = null;
+    	for(Nodo n: nodos) {
+    		makeSet(n);
+    	}
     }
     
     /**

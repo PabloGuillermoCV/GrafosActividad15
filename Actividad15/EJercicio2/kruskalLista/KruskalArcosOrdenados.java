@@ -12,19 +12,16 @@ import grafoJSON.Pesado;
 public class KruskalArcosOrdenados{
     
     private ArrayList<ArcoED> arcos;
-    private ArrayList<Nodo> nodos;
+    private int cantNodos;
     EDDisjointSetCH DS;
 
     public KruskalArcosOrdenados(EDGrafoListaAdyacencias grafo){
         arcos = grafo.getArcos();
         //Ordeno los arcos de peso menor a mayor
         arcos = mergeSort (arcos);
-        nodos = grafo.getNodos();
-        DS = new EDDisjointSetCH(nodos.size());
-        //Inicializo la estructura DS
-        for(Nodo n : nodos) {
-        	DS.makeSet(n);
-        }
+        cantNodos = grafo.getNodos().size();
+        DS = new EDDisjointSetCH(grafo.getNodos());
+
     }
     
     /**
@@ -35,7 +32,7 @@ public class KruskalArcosOrdenados{
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
         //Obtengo un iterador y recorro los arcos para obtener el arbol de cubrimiento
         ListIterator <ArcoED> iterator = arcos.listIterator();
-        while((T.size() != (nodos.size()-1)) && iterator.hasNext () ){
+        while((T.size() != (cantNodos-1)) && iterator.hasNext () ){
         	
         	ArcoED uv = iterator.next ();
             Nodo compu = DS.findSet(uv.getSource());

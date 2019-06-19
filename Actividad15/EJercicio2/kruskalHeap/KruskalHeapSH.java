@@ -8,11 +8,11 @@ import heap.*;
 
 public class KruskalHeapSH{
     private PriorityQueue<ArcoED,Integer> arcos;
-    private ArrayList<Nodo> nodos;
+    private int cantNodos;
     private EDDisjointSetSH DS;
     
     public KruskalHeapSH(EDGrafoListaAdyacencias g) {
-    	nodos = g.getNodos();
+    	cantNodos = g.getNodos().size();
     	arcos = new Heap<ArcoED,Integer>(g.getArcos().size()+1, new Comparator<ArcoED>() );
     	for(ArcoED a : g.getArcos()) {
 	    	try {
@@ -22,15 +22,12 @@ public class KruskalHeapSH{
 				e.printStackTrace();
 			}
 	    }
-    	DS = new EDDisjointSetSH(nodos.size());
+    	DS = new EDDisjointSetSH(g.getNodos());
     }
     
     public ArrayList<ArcoED> minimumSpanningTree() {
     	 ArrayList<ArcoED> T = new ArrayList<ArcoED>();
-    	 for(Nodo n : nodos) {
-         	DS.makeSet(n);
-         }
-    	 while(T.size() != (nodos.size()-1) && !arcos.isEmpty()){
+    	 while(T.size() != (cantNodos-1) && !arcos.isEmpty()){
              try {
 				ArcoED uv = arcos.removeMin().getKey();
 				Nodo compu = DS.findSet(uv.getSource());

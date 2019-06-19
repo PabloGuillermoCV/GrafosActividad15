@@ -9,19 +9,16 @@ import grafo.*;
 public class KruskalOrdenadoSH{
 	 
     private ArrayList<ArcoED> arcos;
-    private ArrayList<Nodo> nodos;
+    private int cantNodos;
     private EDDisjointSetSH DS;
     
     public KruskalOrdenadoSH(EDGrafoListaAdyacencias grafo){
     	//inicializar todo aqui
         arcos = grafo.getArcos();
         arcos = mergeSort (arcos);
-        nodos = grafo.getNodos();
-        DS = new EDDisjointSetSH(nodos.size());
-        //inicializo la estructura DS
-        for(Nodo n : nodos) {
-        	DS.makeSet(n);
-        }
+
+        DS = new EDDisjointSetSH(grafo.getNodos());
+
     }
 	
     /**
@@ -33,7 +30,7 @@ public class KruskalOrdenadoSH{
     
    
         ListIterator <ArcoED> iterator = arcos.listIterator();
-        while((T.size() != (nodos.size()-1)) && iterator.hasNext () ){
+        while((T.size() != (cantNodos-1)) && iterator.hasNext () ){
         	
         	ArcoED uv = iterator.next ();
             Nodo compu = DS.findSet(uv.getSource());

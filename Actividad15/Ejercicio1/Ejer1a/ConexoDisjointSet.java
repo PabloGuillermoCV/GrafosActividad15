@@ -10,12 +10,12 @@ public class ConexoDisjointSet{
 
     private EDDisjointSetCH DS;
     private ArrayList<ArcoED> arcos;
-    private ArrayList<Nodo> nodos;
+ 
 
     public ConexoDisjointSet(EDGrafoListaAdyacencias g){
-    	nodos = g.getNodos();
+
     	arcos = g.getArcos();
-        DS = new EDDisjointSetCH(nodos.size());
+        DS = new EDDisjointSetCH(g.getNodos());
     }
     
     /**
@@ -24,9 +24,6 @@ public class ConexoDisjointSet{
      * @return si el grafo es conexo o no
      */
     public boolean checkConexo(){
-        for(Nodo n: nodos) {
-        	DS.makeSet(n);
-        }
         for(ArcoED e: arcos){
             Nodo v1 = e.getSource();
             Nodo v2 = e.getTarget();

@@ -23,77 +23,85 @@ import kruskalLista.KruskalOrdenadoSH;
 			Grafo[] grafosConexos = new Grafo[10];
 			
 			try{
-				Grafo grafo1 = getGrafo(500,40000);
+				//-----------------------------------------------------GRAFOS COMUNES-------------------------------------------------
+				
+				//Caso especial, grafo más chico permitido
+				Grafo grafo1 = getGrafo(2,1); 
 				System.out.println("Grafo con "+ grafo1.getNodosCount() + " nodos y "+ grafo1.getArcosCount() + " arcos construido");
 				
 				//Grafo pesado pequeño, tipo de peor caso 
 				Grafo grafo2 = getGrafo(5,10); 
 				System.out.println("Grafo con "+ grafo2.getNodosCount() + " nodos y "+ grafo2.getArcosCount() + " arcos construido");
 				
-				//PEOR CASO: MAXIMO NUMERO DE NODOS Y ARCOS
-				Grafo grafo3 = getGrafo(500,124750); 
+				//Caso especial: A == N-1 
+				Grafo grafo3 = getGrafo(50,49); 
 				System.out.println("Grafo con "+ grafo3.getNodosCount() + " nodos y "+ grafo3.getArcosCount() + " arcos construido");
 				
-				Grafo grafo4 = getGrafo(200,15000);
+				//TIPO DE MEJOR CASO: GRAFO RALO
+				Grafo grafo4 = getGrafo(71,900); 
 				System.out.println("Grafo con "+ grafo4.getNodosCount() + " nodos y "+ grafo4.getArcosCount() + " arcos construido");
 				
-				//TIPO DE MEJOR CASO: GRAFO RALO
-				Grafo grafo5 = getGrafo(71,900); 
+				//Caso especial: N == A
+				Grafo grafo5 = getGrafo(179,179); 
 				System.out.println("Grafo con "+ grafo5.getNodosCount() + " nodos y "+ grafo5.getArcosCount() + " arcos construido");
 				
 				Grafo grafo6 = getGrafo(190,300); 
 				System.out.println("Grafo con "+ grafo6.getNodosCount() + " nodos y "+ grafo6.getArcosCount() + " arcos construido");
 				
-				Grafo grafo7 = getGrafo(420,69870); 
+				Grafo grafo7 = getGrafo(200,15000);
 				System.out.println("Grafo con "+ grafo7.getNodosCount() + " nodos y "+ grafo7.getArcosCount() + " arcos construido");
-				
-				//Caso especial, grafo más chico permitido
-				Grafo grafo8 = getGrafo(2,1); 
+
+				Grafo grafo8 = getGrafo(420,69870); 
 				System.out.println("Grafo con "+ grafo8.getNodosCount() + " nodos y "+ grafo8.getArcosCount() + " arcos construido");
 				
-				//Caso especial: N == A
-				Grafo grafo9 = getGrafo(179,179); 
+				Grafo grafo9 = getGrafo(500,40000);
 				System.out.println("Grafo con "+ grafo9.getNodosCount() + " nodos y "+ grafo9.getArcosCount() + " arcos construido");
 				
-				//Caso especial: A == N-1 
-				Grafo grafo10 = getGrafo(50,49); 
+				//PEOR CASO: MAXIMO NUMERO DE NODOS Y ARCOS
+				Grafo grafo10 = getGrafo(500,124750); 
 				System.out.println("Grafo con "+ grafo10.getNodosCount() + " nodos y "+ grafo10.getArcosCount() + " arcos construido");
 				
-				//TIPO DE MEJOR CASO: GRAFO RALO
-				Grafo grafo1C = getGrafoConexo(80,100); 
-				System.out.println("Grafo con "+ grafo1C.getNodosCount() + " nodos y "+ grafo1C.getArcosCount() + " arcos construido");
 				
-				//PEOR CASO: MAXIMO NUMERO DE NODOS Y ARCOS Y CONEXO
-				Grafo grafo2C = getGrafoConexo(500,124750); 
+				
+				//-----------------------------------------------------GRAFOS CONEXOS------------------------------------------------------------
+				
+				//Caso Especial: grafo más chico permitido
+				Grafo grafo1C = getGrafoConexo(2,1); 
+				System.out.println("Grafo Conexo con "+ grafo1C.getNodosCount() + " nodos y "+ grafo1C.getArcosCount() + " arcos construido");
+
+				//Caso especial: N == A
+				Grafo grafo2C = getGrafoConexo(10,10); 
 				System.out.println("Grafo Conexo con "+ grafo2C.getNodosCount() + " nodos y "+ grafo2C.getArcosCount() + " arcos construido");
 				
 				Grafo grafo3C = getGrafoConexo(20,30); 
 				System.out.println("Grafo Conexo con "+ grafo3C.getNodosCount() + " nodos y "+ grafo3C.getArcosCount() + " arcos construido");
 				
-				Grafo grafo4C = getGrafoConexo(361,500); 
-				System.out.println("Grafo Conexo con "+ grafo4C.getNodosCount() + " nodos y "+ grafo4C.getArcosCount() + " arcos construido");
+				//TIPO DE MEJOR CASO: GRAFO RALO
+				Grafo grafo4C = getGrafoConexo(80,100); 
+				System.out.println("Grafo con "+ grafo4C.getNodosCount() + " nodos y "+ grafo4C.getArcosCount() + " arcos construido");
 				
-				//Caso especial: A == N-1
-				Grafo grafo5C = getGrafoConexo(211,210); 
+				Grafo grafo5C = getGrafoConexo(124,6999); 
 				System.out.println("Grafo Conexo con "+ grafo5C.getNodosCount() + " nodos y "+ grafo5C.getArcosCount() + " arcos construido");
 				
-				Grafo grafo6C = getGrafoConexo(124,6999); 
+				Grafo grafo6C = getGrafoConexo(173,10000); 
 				System.out.println("Grafo Conexo con "+ grafo6C.getNodosCount() + " nodos y "+ grafo6C.getArcosCount() + " arcos construido");
 				
-				//Caso Especial: grafo más chico permitido
-				Grafo grafo7C = getGrafoConexo(2,1); 
+				//Caso especial: A == N-1
+				Grafo grafo7C = getGrafoConexo(211,210); 
 				System.out.println("Grafo Conexo con "+ grafo7C.getNodosCount() + " nodos y "+ grafo7C.getArcosCount() + " arcos construido");
 				
-				Grafo grafo8C = getGrafoConexo(173,10000); 
+				
+				Grafo grafo8C = getGrafoConexo(300,41258); 
 				System.out.println("Grafo Conexo con "+ grafo8C.getNodosCount() + " nodos y "+ grafo8C.getArcosCount() + " arcos construido");
 				
-				//Caso especial: N == A
-				Grafo grafo9C = getGrafoConexo(10,10); 
+				Grafo grafo9C = getGrafoConexo(361,500); 
 				System.out.println("Grafo Conexo con "+ grafo9C.getNodosCount() + " nodos y "+ grafo9C.getArcosCount() + " arcos construido");
 				
-				Grafo grafo10C = getGrafoConexo(300,41258); 
+				//PEOR CASO: MAXIMO NUMERO DE NODOS Y ARCOS Y CONEXO
+				Grafo grafo10C = getGrafoConexo(500,124750); 
 				System.out.println("Grafo Conexo con "+ grafo10C.getNodosCount() + " nodos y "+ grafo10C.getArcosCount() + " arcos construido");
 				
+
 				
 				grafosComunes[0] = grafo1;
 				grafosComunes[1] = grafo2;
