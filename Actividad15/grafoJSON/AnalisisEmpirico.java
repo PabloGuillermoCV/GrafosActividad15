@@ -1,6 +1,8 @@
 package grafoJSON;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -134,104 +136,81 @@ import kruskalLista.KruskalOrdenadoSH;
 			
 			//para cada grafo Comun creado, ejecuto el problema 1 según las 2 variantes y tomo los tiempos 
 			for(int i = 0; i < grafosComunes.length; i++) {
-				double acumulator = 0;
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con BFS
 				EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosComunes[i]);
 				
-				for(int v = 0; v < 100; v++) {
-					double timeI = System.nanoTime();
+				long timesRun = Math.round(100*(  (double)( 100000)/grafosComunes[i].getArcosCount()   )) + 1;
+				
+				LocalTime t = LocalTime.now();
+				for(int v = 0; v <  timesRun; v++) {
 					ConexoBFS p1A = new ConexoBFS(ED);
 					p1A.checkConexo();	
-					double timeF = System.nanoTime();
-					double dif = timeF - timeI;
-					acumulator += dif;
 				}
 				
-				acumulator /= 100;
-			
-				System.out.println("el tiempo para el Problema 1 por BFS para el grafo" + (i+1) + " es: " + (acumulator/1000000) );
-				acumulator = 0;
+				double executionMilli = Duration.between(t, LocalTime.now()).toMillis(); 
+				double Time = executionMilli/timesRun;
+				System.out.println("el tiempo para el Problema 1 por BFS para el grafo" + (i+1) + " es: " + (Time) );
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 1 con Disjoint-Set
 				
-				for(int v = 0; v < 100; v++) {
-					double timeI2 = System.nanoTime();
+			
+				LocalTime t2 = LocalTime.now();
+				for(int v = 0; v < timesRun ; v++) {
 					ConexoDisjointSet p1A2 = new ConexoDisjointSet(ED);
 					p1A2.checkConexo();
-					double timeF2 = System.nanoTime();
-					double dif2 = timeF2 - timeI2;
-					acumulator += dif2;
 				}
 				
-				
-				acumulator /= 100;
-				
-				System.out.println("el tiempo para el Problema 1 por Disjoint-Set para el grafo" + (i+1) + " es: " + (acumulator/1000000) );
+				double executionMilli2 = Duration.between(t2, LocalTime.now()).toMillis(); 
+				double Time2 = executionMilli2/timesRun;
+				System.out.println("el tiempo para el Problema 1 por Disjoint-Set para el grafo" + (i+1) + " es: " + (Time2) );
 			}
 			
 			//para cada grafo Conexo creado, ejecuto el problema 2 según las 4 variantes y tomo los tiempos
 			for(int i = 0; i < grafosConexos.length; i++) {
-				double acumulator = 0;
 				EDGrafoListaAdyacencias ED = new EDGrafoListaAdyacencias(grafosConexos[i]);
 			
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set SIN Heuristicas
+				long timesRun = Math.round(100*(  (double)( 100000)/grafosConexos[i].getArcosCount()   )) + 1;
 				
-				for(int v = 0; v < 100; v++) {
+				LocalTime t2 = LocalTime.now();
+				for(int v = 0; v < timesRun; v++) {
 					KruskalOrdenadoSH p2A2 = new KruskalOrdenadoSH(ED);
-					double timeI2 = System.nanoTime();
 					p2A2.Kruskal();
-					double timeF2 = System.nanoTime();
-					double dif2 = timeF2 - timeI2;
-					acumulator += dif2;
+
 				}
+				double executionMilli2 = Duration.between(t2, LocalTime.now()).toMillis(); 
+				double Time2 = executionMilli2/timesRun;
+				System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (Time2) );
 				
-				acumulator /= 100;
-				
-				System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (acumulator/1000000) );
-				
-				acumulator = 0;
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Arreglo Ordenado y Disjoint-Set CON Heuristicas
-				
-				for(int v = 0; v < 100; v++) {
-					double timeI = System.nanoTime();
+				LocalTime t = LocalTime.now();
+				for(int v = 0; v < timesRun; v++) {
 					KruskalArcosOrdenados p2A = new KruskalArcosOrdenados(ED);
 					p2A.Kruskal();
-					double timeF = System.nanoTime();
-					double dif = timeF - timeI;
-					acumulator += dif;
 				}
+				double executionMilli = Duration.between(t, LocalTime.now()).toMillis(); 
+				double Time = executionMilli/timesRun;
+				System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (Time) );
 				
-		
-				acumulator /= 100;
-				System.out.println("el tiempo para el Problema 2 por Lista Ordenada con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (acumulator/1000000) );
-				
-				acumulator = 0;
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Heap y Disjoint-Set SIN Heuristicas
-				
-				for(int v = 0; v < 100; v++) {
-					double timeI4 = System.nanoTime();
+				LocalTime t4 = LocalTime.now();
+				for(int v = 0; v < timesRun; v++) {
 					KruskalHeapSH p2A4 = new KruskalHeapSH(ED);
 					p2A4.minimumSpanningTree();
-					double timeF4 = System.nanoTime();
-					double dif4 = timeF4 - timeI4;
-					acumulator += dif4;
 				}
-				acumulator /= 100;
-				System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (acumulator/1000000) );
+				double executionMilli4 = Duration.between(t4, LocalTime.now()).toMillis(); 
+				double Time4 = executionMilli4/timesRun;
+				System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set SIN Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (Time4) );
 			
-				acumulator = 0;
+
 				//creacion de estampillas de tiempo y tomado del tiempo para el problema 2 con Heap y Disjoint-Set CON Heuristicas
-				
-				for(int v = 0; v < 100; v++) {
-					double timeI3 = System.nanoTime();
+				LocalTime t3 = LocalTime.now();
+				for(int v = 0; v < timesRun; v++) {
 					KruskalHeapCH p2A3 = new KruskalHeapCH(ED);
 					p2A3.minimumSpanningTree();
-					double timeF3 = System.nanoTime();
-					double dif3 = timeF3 - timeI3;
-					acumulator += dif3;
 				}
-				acumulator /= 100;
-				
-				System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (acumulator/1000000) );
+				double executionMilli3 = Duration.between(t3, LocalTime.now()).toMillis();
+				double Time3 = executionMilli3/timesRun;
+				System.out.println("el tiempo para el Problema 2 por Heap con Disjoint-Set CON Heuristica para el grafo Conexo grafo" + (i+1) + "C " + " es: " + (Time3) );
 			}
 			
 			

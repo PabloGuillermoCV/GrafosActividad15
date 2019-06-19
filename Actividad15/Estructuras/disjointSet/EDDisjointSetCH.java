@@ -13,11 +13,9 @@ public class EDDisjointSetCH{
 
     private Nodo[] cjtos;
     private int ultimaPos = 0;
-    private Nodo raiz; 
     
     public EDDisjointSetCH(ArrayList<Nodo> nodos) {
     	cjtos = new Nodo[nodos.size()];
-    	raiz = null;
     	for(Nodo n: nodos) {
     		makeSet(n);
     	}
@@ -29,9 +27,6 @@ public class EDDisjointSetCH{
      */
 
     public void makeSet(Nodo n){
-    	if(ultimaPos == 0) {
-    		raiz = n;
-    	}
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);
         n.setPadre(n);
@@ -50,7 +45,6 @@ public class EDDisjointSetCH{
         if(!(padreN.getRotulo() == n.getRotulo())) {
         	n.setPadre(findSet(padreN));
         }
-        
         return n.getPadre();
     }
 

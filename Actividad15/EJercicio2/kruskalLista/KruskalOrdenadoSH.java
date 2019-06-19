@@ -16,7 +16,6 @@ public class KruskalOrdenadoSH{
     	//inicializar todo aqui
         arcos = grafo.getArcos();
         arcos = mergeSort (arcos);
-
         DS = new EDDisjointSetSH(grafo.getNodos());
 
     }

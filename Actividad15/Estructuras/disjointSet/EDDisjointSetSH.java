@@ -8,7 +8,6 @@ public class EDDisjointSetSH{
 
     private Nodo[] cjtos;
     private int ultimaPos = 0;
-    private Nodo raiz;
     
     public EDDisjointSetSH(ArrayList<Nodo> nodos) {
     	cjtos = new Nodo[nodos.size()];
@@ -22,8 +21,6 @@ public class EDDisjointSetSH{
      * @param n un entero que representarÃ¡ al elemento representante del cjto creado
      */
     public void makeSet(Nodo n){
-    	if(ultimaPos == 0)
-    		raiz = n;
         //TODO: Verificar tema de como meter el nuevo nodo en la estructura en si, ver posicionamiento en el arreglo
         cjtos[ultimaPos] = n;
         n.setPosEnDS(ultimaPos);

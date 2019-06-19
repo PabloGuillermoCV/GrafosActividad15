@@ -1,13 +1,12 @@
 package kruskalLista;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
+
 
 import disjointSet.EDDisjointSetCH;
 import grafo.ArcoED;
 import grafo.EDGrafoListaAdyacencias;
 import grafo.Nodo;
-import grafoJSON.Pesado;
 
 public class KruskalArcosOrdenados{
     
@@ -30,11 +29,11 @@ public class KruskalArcosOrdenados{
      */
     public ArrayList<ArcoED> Kruskal(){
         ArrayList<ArcoED> T = new ArrayList<ArcoED>();
+        int i = 0;
         //Obtengo un iterador y recorro los arcos para obtener el arbol de cubrimiento
-        ListIterator <ArcoED> iterator = arcos.listIterator();
-        while((T.size() != (cantNodos-1)) && iterator.hasNext () ){
+        while((T.size() != (cantNodos-1))){
         	
-        	ArcoED uv = iterator.next ();
+        	ArcoED uv = arcos.get(i);
             Nodo compu = DS.findSet(uv.getSource());
             Nodo compv = DS.findSet(uv.getTarget());
             //Obtenidos los nodos del arco minimal actual, si estos NO estaban en un mismo conjunto, los uno
@@ -42,6 +41,7 @@ public class KruskalArcosOrdenados{
                 DS.union(uv.getSource(), uv.getTarget());
                 T.add(uv);
             }
+            i++;
 	 
         }
         return T;

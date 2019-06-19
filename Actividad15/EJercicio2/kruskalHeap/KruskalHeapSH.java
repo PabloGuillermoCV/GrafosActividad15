@@ -27,7 +27,7 @@ public class KruskalHeapSH{
     
     public ArrayList<ArcoED> minimumSpanningTree() {
     	 ArrayList<ArcoED> T = new ArrayList<ArcoED>();
-    	 while(T.size() != (cantNodos-1) && !arcos.isEmpty()){
+    	 while(T.size() != (cantNodos-1)){
              try {
 				ArcoED uv = arcos.removeMin().getKey();
 				Nodo compu = DS.findSet(uv.getSource());
