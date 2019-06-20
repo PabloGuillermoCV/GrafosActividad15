@@ -21,7 +21,7 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	/**
 	 * Metodo principal que se encarga de recorrer el grafo segun el algoritmo BFS
 	 */
-	//El ciclo infinito se genera acá a veces con el grafo9
+	
 	public int doBFS() {
 	
 		
@@ -56,7 +56,7 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 				else {
 					//Para cada arco incidente al nodo obtenido de la cola
 					for(ArcoED e: graph.incidentes(u)){ 
-						//Obtengo el nodo opuesto según el arco que estoy considerando en este momento
+						//Obtengo el nodo opuesto segÃºn el arco que estoy considerando en este momento
 						Nodo z = graph.getOpuesto(u, e);
 						//Verifico si el nodo obtenido es Blanco, si lo es, lo agrego a la cola y sumo 1 al contador de nodos visitados
 						if( z.getColor().equals("blanco") && !(z.equals(u))) {
@@ -93,10 +93,10 @@ public class BreadthFirstSearch<V,E> implements BFS<V,E> {
 	 */
 	public boolean esConexo() throws FullQueueException{
 		
-		//Realizo el BFS y cuento cuantos nodos visité
+		//Realizo el BFS y cuento cuantos nodos visitÃ©
 		int visitados = doBFS();
 		
-		//si con un solo BFS recorrí todo el grafo y marqué todos los nodos, entonces, el grafo es conexo
+		//si con un solo BFS recorrÃ­ todo el grafo y marquÃ© todos los nodos, entonces, el grafo es conexo
 		return visitados == graph.getNodos().size();
 	}
 	
